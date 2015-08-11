@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}_Anybfans社区</title>
+    <meta name="descriptions" content="Anybfans软件分享的交流社区">
+    <meta name="keywords" content="Anybfans,绿色软件,zdfans,zd423,gogotester">
+    <link rel="shortcut icon" type="image/x-icon" href="/site_media/images/common/favicon.ico" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script>var version='201507131409',dir='{{settings.JSMIN}}';</script>
+    {% block css%}{% endblock %}
+    {% block plugin %}{% endblock %}
+    <!--[if IE 6]>
+    
+    <![endif]-->
+</head>
+<body>
+    {% block body %}{% endblock %}
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    {% block js %}{% endblock %}
+
+    {% if not settings.DEBUG %}
+    <script>
+    //百度统计代码
+    </script>
+    {%endif%}
+</body>
+</html>
