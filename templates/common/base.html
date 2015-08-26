@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}_Anybfans社区</title>
     <meta name="descriptions" content="Anybfans软件分享的交流社区">
     <meta name="keywords" content="Anybfans,绿色软件,zdfans,zd423,gogotester">
     <link rel="shortcut icon" type="image/x-icon" href="/site_media/images/common/favicon.ico" />
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/site_media/css/base.css">
     <script>var version='201507131409',dir='{{settings.JSMIN}}';</script>
     {% block css%}{% endblock %}
     {% block plugin %}{% endblock %}
@@ -16,9 +16,17 @@
     
     <![endif]-->
 </head>
-<body>
+<body style="background-color: #e2e2e2;">
     {% include "common/_header.html" %}
-    {% block body %}{% endblock %}
+    <div class="container warpper">
+    <div class="col-md-1"></div>
+    <div class="content col-md-6">
+        {% block warpper %}{%endblock%}
+    </div>
+        {% include "common/_right_bar.html" %}
+    <div class="col-md-1"></div>
+    </div>
+    {% include "common/_footer.html" %}
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     {% block js %}{% endblock %}

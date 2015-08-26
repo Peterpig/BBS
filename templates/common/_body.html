@@ -1,0 +1,15 @@
+{% extends "common/base.html" %}
+{% block warpper %} 
+    <div class=" title">  
+        <ul>
+            <li><a href=""><span>技术</span></a></li>
+            <li><a href=""><span>创意</span></a></li>
+            <li><a href=""><span>好玩</span></a></li>
+            <li><a href=""><span>交易</span></a></li>
+            <li><a href=""><span>全部</span></a></li>
+        </ul>
+    </div>
+    <div class="main">
+        {% block main %}{% endblock %}
+    </div>
+{% endblock %}
