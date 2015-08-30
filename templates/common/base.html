@@ -19,13 +19,14 @@
 <body style="background-color: #e2e2e2;">
     {% include "common/_header.html" %}
     <div class="container warpper">
-    <div class="col-md-1"></div>
-    <div class="content col-md-6">
-        {% block warpper %}{%endblock%}
+        <div class="col-md-1"></div>
+        <div class="content col-md-6">
+            {% block warpper %}{%endblock%}
+        </div>
+            {% include "common/_right_bar.html" %}
+        <div class="col-md-1"></div>
     </div>
-        {% include "common/_right_bar.html" %}
-    <div class="col-md-1"></div>
-    </div>
+    {% block commit %}{% endblock %}
     {% include "common/_footer.html" %}
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

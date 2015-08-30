@@ -24,8 +24,20 @@ img.avatar {
     text-align: left;
     border-bottom: 1px solid #e2e2e2;
 }
+.chevron{
+    font-weight: 500;
+}
 
-
+.fr {
+    float: right;
+    text-align: right;
+}
+.gray{
+    color: #999;
+}
+.step10{
+    height: 10px;
+}
 /*header*/
 .navbar{
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -39,9 +51,6 @@ img.avatar {
     width: 200px;
 }
 
-.navbar a{
-    color: black;
-}
 .height5{
     height: 8px;
 }
@@ -64,7 +73,7 @@ img.avatar {
 
 .title{
     line-height: 1.5;
-    padding: 4px 6px 4px 6px
+    padding: 4px 6px 4px 6px;
     margin: 4px 6px 4px 6px;
     font-size: 14px;
     line-height: 120%;
@@ -114,9 +123,11 @@ img.avatar {
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
+
 /*footer*/
 #footer{
-    margin-right: 0px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    clear: both;
+    float: right;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }

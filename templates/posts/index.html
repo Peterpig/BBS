@@ -1,0 +1,50 @@
+{% extends "common/_body.html" %}
+{% load markup %}
+{% block css %}
+<link rel="stylesheet" href="/site_media/css/article.css">
+{% endblock %}
+{% block warpper %}
+    <div class="article container">   
+        <div class="header" id="header">
+            <div class="r_portrait">
+                <a href=""><img src="/site_media/images/avatar/avatar.png" alt=""></a>
+            </div>
+            <ol class="breadcrumb">
+                <li><a href="/">Anybfans</a></li>
+                <li><a href="/go/share">分享发现</a></li>
+            </ol>
+            <h3>来开启大脑洞模式，你待吃到什么馅儿的月饼？(●′ω`●)</h3>
+            <small class="small" style="">
+                <span>Mr.orange . 2015年8月27日 . 1 点击</span>
+            </small>
+        </div>
+
+        <div class="">
+            {{test|markdown}}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block commit %}
+
+    <div class="">
+        <div class="col-md-1"></div>
+        <div class="commit col-md-6">
+            <div class="breadcrumb">
+                <span>添加一条新回复&nbsp; >&nbsp; 表情</span>
+                <a href="#" class="fr">↑回到顶部</a>
+            </div>
+            <form method="post" action="">
+            <textarea name="content" maxlength="10000" class="mll" id="reply_content" style="overflow: hidden; word-wrap: break-word; resize: none; height: 112px; width: 100%;" placeholder="你可以在文本框内直接粘贴截图类似于 [:微笑:]的图片标签可以优雅的移动">
+            </textarea>
+            <div class="step10"></div>
+            <div class="fr"><div class="sep5"></div><span class="gray">请尽量让自己的回复能够对别人有帮助</span></div>
+            <input type="submit" value="回复" class="super normal button">
+        </form>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+    </div>
+{% endblock commit %}

@@ -24,5 +24,4 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('', 
     (r'', include('apps.urls')),
-    (r'^test/$', 'libs.views.test'),
     )
