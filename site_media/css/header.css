@@ -1,0 +1,14 @@
+.topbar-wrap{
+    width: 100%;
+    min-width: 1000px;
+    background-color: #2882b5;
+    border-bottom: 2px solid #e2e2e2;
+    margin-bottom: 20px;
+}
+
+.topbar{
+    height: 48px;
+    line-height: 48px;
+    overflow: hidden;
+    color: #2882b5;
+}
