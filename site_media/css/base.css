@@ -1,0 +1,7 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+a{ list-style: none;text-decoration: none; }
+a:hover { color: #4d5256; }
+a:visited {color: #fff}
