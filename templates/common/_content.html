@@ -1,0 +1,11 @@
+{% extends "common/base.html" %}
+{% block content %} 
+    <div class="content">
+        <div class="content-l">
+            {% block body %}{% endblock body %}
+        </div>
+        <div class="content-r">
+            {% include "common/_sidebar.html" %}
+        </div>
+    </div>
+{% endblock content %}

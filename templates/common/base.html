@@ -9,6 +9,9 @@
     <link rel="shortcut icon" type="image/x-icon" href="/site_media/images/common/favicon.ico" />
     <link rel="stylesheet" href="/site_media/css/base.css">
     <link rel="stylesheet" href="/site_media/css/header.css">
+    <link rel="stylesheet" href="/site_media/css/content.css">
+    <link rel="stylesheet" href="/site_media/css/posts.css">
+    <link rel="stylesheet" href="/site_media/css/sidebar.css">
     <script>var version='201507131409',dir='{{settings.JSMIN}}';</script>
     {% block css%}{% endblock %}
     {% block plugin %}{% endblock %}
@@ -16,8 +19,9 @@
     
     <![endif]-->
 </head>
-<body style="background-color: #e2e2e2;">
+<body>
     {% include "common/_header.html" %}
+    {% block content %}{% endblock content %}
     {% include "common/_footer.html" %}
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     {% block js %}{% endblock %}

@@ -1,15 +1,37 @@
-{% extends "common/base.html" %}
-{% block warpper %} 
-    <div class="title">  
+{% extends "common/_content.html" %}
+{% block body %}
+    <div class="title">
         <ul>
-            <li><a href=""><span>技术</span></a></li>
-            <li><a href=""><span>创意</span></a></li>
-            <li><a href=""><span>好玩</span></a></li>
-            <li><a href=""><span>交易</span></a></li>
-            <li><a href=""><span>全部</span></a></li>
+            <li><a href="" class="tab">全部</a></li>
+            <li><a href="" class="tab">技术</a></li>
+            <li><a href="" class="tab current">好玩</a></li>
+            <li><a href="" class="tab">问与答</a></li>
         </ul>
     </div>
-    <div class="main">
-        {% block main %}{% endblock %}
+    <div class="posts">
+        {% for i in num %}       
+            <div class="cell">
+                <div class="cell-avatar">
+                    <a href="/member/Vkin">
+                        <img src="//cdn.v2ex.co/gravatar/4e44846659a7f3fe273b5cca32f1c136?s=48&amp;d=retro" class="avatar" width="48px" height="48px">
+                    </a>
+                </div>
+                <div class="cell-text">
+                    <span class="posts-title">
+                        <a href="#">端午去了一趟台湾玩，今天整理照片，突然好怀念那边的海跟天空。</a>
+                    </span>
+                    <div class="height5"></div>
+                    <span class="bottom fade">
+                        <a class="node" href="#">风景</a> &nbsp;•&nbsp; 
+                        <a class="number" href="#">Anybfans</a>
+                        &nbsp;•&nbsp;
+                        <span class="last-replay" href="#">最后回复来自 <strong>AAA</strong></span>
+                    </span>
+                </div>
+                <div class="cell-num">
+                    <span>16</span>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-{% endblock %}
+{% endblock body %}

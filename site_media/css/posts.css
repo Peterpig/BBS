@@ -1,0 +1,105 @@
+/* start title */
+.title{
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #e2e2e2;
+    background-color: #fff;
+}
+
+.title ul{
+    list-style: none;
+    margin-left: 40px;
+}
+
+.title li{
+    display: inline-block;
+}
+
+.title a.tab{
+    display: inline-block;
+    font-size: 13px;
+    line-height: 13px;
+    padding: 5px 8px;
+    margin-right: 5px;
+    border-radius: 3px;
+    color: #555;
+}
+
+.title a.tab:hover {
+    background-color: #f5f5f5;
+    color: #000;
+    text-decoration: none;
+}
+
+.title a.current:link, a.current:visited, a.current:active {
+    background-color: #334;
+    color: #fff;
+}
+
+.title a.current:hover {
+    background-color: #334;
+    color: #fff;
+}
+
+/* end title */
+
+/* start posts */
+.posts{
+    background-color: #fff;
+}
+
+.cell-avatar{
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    display: inline-block;
+}
+.cell-avatar a{
+    width: 48px;
+    height: 50px;
+    vertical-align: top;
+}
+
+.cell-avatar img{
+    border: 0;
+    max-width: 48px; 
+    max-height: 48px;
+}
+
+.cell-text{
+    display: inline-block;
+    font-size: 16px;
+    line-height: 130%;
+    text-shadow: 0px 1px 0px #fff;
+    word-wrap: break-word;
+    hyphens: auto;
+    width: 83%;
+}
+.cell-text .posts-title a{
+    color: #778087;
+}
+.cell-text .bottom{
+    font-size: 12px;
+}
+.cell-text .node{
+    background-color: #f5f5f5;
+    vertical-align: bottom;
+    color: #999;
+    padding: 2px;
+}
+.cell-text strong{
+    color: #555;
+}
+.cell-num{
+    display: inline-block;
+    position: absolute;
+    margin-top: 15px;
+}
+.cell-num span{
+    display: block;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #3A3F51;
+}
+/* end posts */
