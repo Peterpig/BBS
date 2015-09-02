@@ -1,6 +1,11 @@
 /*右侧用户界面*/
+.box{
+    width: 270px;
+    height: auto;
+    margin-bottom: 20px;
+}
 .user{
-    font-size: 16px;
+    font-size: 14px;
     color: #778087;
 }
 .user img{
@@ -24,5 +29,39 @@
 .user-save a span:nth-child(2){
     color: #ccc;
 }
-
 /*用户界面结束*/
+
+/*今日热议*/
+.top10{
+    word-wrap: break-word;
+    hyphens: auto;
+    overflow: hidden;
+    width: 270px;
+    height: auto;
+}
+
+.top10 a:nth-child(1), .top10 a img{
+    float: left;
+    width: 24px;
+    height: 24px;
+    }
+.top10 a:nth-child(2){
+    display: block;
+    width: 220px;
+    margin-left: 30px;
+    text-align: left;
+    font-size: 13px;
+}
+/*今日热议end*/
+
+/*社区运行状态*/
+.bbs-detail{
+    font-size: 14px;
+    width: 100%;
+    height: auto;
+    margin: 0 20%;
+}
+.bbs-detail table td:nth-child(1){
+    color: #ccc;
+}
+/*社区运行状态end*/

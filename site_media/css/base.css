@@ -6,6 +6,7 @@
 body {
     font-family: "Lucida Grande", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
     background-color: #e2e2e2;
+    font-size: 14px;
 }
 
 a{list-style: none;text-decoration: none; }
