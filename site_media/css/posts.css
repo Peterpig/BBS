@@ -44,19 +44,24 @@
 /* end title */
 
 /* start posts */
+.bk-fade{
+    background-color: #F5F5F5;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+}
 .posts{
     background-color: #fff;
 }
 
 .cell-avatar{
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     margin-right: 10px;
     display: inline-block;
 }
 .cell-avatar a{
     width: 48px;
-    height: 50px;
+    height: 48px;
     vertical-align: top;
 }
 
@@ -76,7 +81,7 @@
     width: 83%;
 }
 .cell-text .posts-title a{
-    color: #778087;
+    color: #00A1F1;
 }
 .cell-text .bottom{
     font-size: 12px;
@@ -91,15 +96,14 @@
     color: #555;
 }
 .cell-num{
-    display: inline-block;
-    position: absolute;
+    float: right;
     margin-top: 15px;
 }
 .cell-num span{
     display: block;
-    padding: 5px 10px;
-    border-radius: 10px;
+    padding: 3px 3px;
+    border-radius: 3px;
     color: #fff;
-    background-color: #3A3F51;
+    background-color: #bbb;
 }
 /* end posts */

@@ -1,15 +1,14 @@
 .topbar-wrap{
     width: 100%;
     min-width: 1000px;
-    background-color: #2882b5;
-    border-bottom: 1px solid #e2e2e2;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
 }
 
 .topbar{
     position: relative;
     height: 50px;
     line-height: 50px;
+    background-color: #F5F5F5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 /* left */
@@ -88,5 +87,5 @@ input:focus{
 }
 
 .topbar-text a{
-    color: #fff;
+    color: #4183c4;
 }
