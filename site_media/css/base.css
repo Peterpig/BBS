@@ -28,6 +28,9 @@ img.avatar{
 .fade{
     color: #000;
 }
+.gray{
+    color: #999;
+}
 .box {
     background-color: #fff;
     border-radius: 3px;
