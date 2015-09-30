@@ -1,10 +1,7 @@
 .content{
-    height: 80%;
-    width: 80%;
+    height: 100%;
     min-height: 1500px;
     min-width: 1000px;
-    margin: 20px auto;
-    position: relative;
     color: #000;
     overflow: hidden;
     background-color: #fff;
@@ -13,17 +10,18 @@
 .content a{
     color: #778087;
 }
+.comtent-position{
+    margin: 0 10%;
+}
 .content-l{
-    float: left;
+    display: inline-block;
     min-width: 700px;
-    height: 100%;
-    min-height: 1500px;
+    width: 800px;
 }
 
 .content-r{
     float: right;
-    height: 100%;
-    }
+}
     
 @media only screen and (max-width : 1000px){
     .content{
@@ -43,3 +41,46 @@
 
 
 /* 登陆 注册界面 */
+.re-main{
+    color: #666;
+    font-size: 15px;
+    background-color: #FFF;
+    padding: 50px 0;
+}
+
+.re-main .wrapper{
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+    display: -webkit-box;
+    min-width: 720px;
+    flex-wrap: wrap;
+    max-width: 1300px;
+}
+.re-main .form{
+    width: 270px;
+    height: 210px;
+}
+.re-main label{
+    margin: 12px 0 6px;
+    float: left;
+}
+.re-main input{
+    display: inlin-block;
+    width: 200px;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid #e2e2e2;
+    animation: none;
+    margin: 12px 0 6px;
+}
+
+.re-main img{
+    width: 50px; 
+    height: 20px;
+    margin-left: 15px;
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    border: 0;
+}
