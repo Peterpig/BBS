@@ -3,37 +3,37 @@
     min-width: 700px;
 }
 
+/*文章标题*/
+.art-header{
+    height: 80px;
+}
+
 /* 头部 日历                                                    */
 .art-detail{
     float: right;
     height: 20px;
     color: #999;
-    width: 300px;
+    display: block;
 }
-.art-right{
-    float: right;
-}
-.art-detail .art-right span{
+.art-detail .tab-block{
     display: inline-block;
     margin: 0 5px;
+    height: 20px;
 }
 
-.art-detail .art-right span i{
-    margin-right: 5px;
+.art-detail .tab-block a{
+    margin-left: 3px;
 }
 
-/*文章标题*/
-.art-header{
-    height: 100px;
-    border: 1px solid #ccc;
-}
 
 .art-title {
-    margin: 20px 0px;
+    padding-top: 20px;
 }
 .art-title img{
     width: 48px;
     height: 48px;
+    border-radius: 24px;
+    float: left;
 }
 .art-title h1{
     clear: both;
@@ -42,5 +42,26 @@
     text-align: left;
     font-size: 20px;
     font-weight: 500;
-    padding: 0px;
+    padding-top: 10px;
+}
+.art-tab{
+    display: block;
+    margin-top: 10px;
+}
+
+/*内容*/
+.art-content{
+    width: 800px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
+    word-wrap: break-word;
+    hyphens: auto;
+    overflow: hidden;
+}
+
+@media only screen and (max-width : 1000px){
+    .art-content{
+        margin: 20px auto;
+    }
 }

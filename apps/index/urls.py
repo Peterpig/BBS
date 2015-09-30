@@ -5,6 +5,7 @@ from django.conf import settings
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('apps.index',
-    (r'^$', 'index.index')
+urlpatterns = patterns('apps.index.index',
+    (r'^$', 'index'),        # 首页
+    (r'^login/$', 'login')        # 登陆
 )
