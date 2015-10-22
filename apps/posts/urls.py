@@ -6,5 +6,6 @@ from django.conf import settings
 # admin.autodiscover()
 
 urlpatterns = patterns('apps.posts.posts',
-    (r'$', 'index'),
+    (r'^t/(?P<id>\d)', 'index'),    # 文章单页
+    (r'new/$', 'new'),   # 发表新文章
     )

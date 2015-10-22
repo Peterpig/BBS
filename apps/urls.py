@@ -7,7 +7,7 @@ from django.conf import settings
 
 urlpatterns = patterns('',
     (r'', include('apps.index.urls')),
-    (r'^t/(?P<id>\d)', include('apps.posts.urls')),
+    (r'', include('apps.posts.urls')),
 )
 
 

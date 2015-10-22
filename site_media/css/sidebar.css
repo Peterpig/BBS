@@ -29,6 +29,14 @@
 .user-save a span:nth-child(2){
     color: #ccc;
 }
+.pb-article{
+    font-size: 14px;
+}
+.pb-article a:hover{
+    color: #34A853;
+    text-decoration: none;
+}
+
 /*用户界面结束*/
 
 /*今日热议*/
