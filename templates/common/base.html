@@ -7,18 +7,39 @@
     <meta name="descriptions" content="Anybfans软件分享的交流社区">
     <meta name="keywords" content="Anybfans,绿色软件,zdfans,zd423,gogotester">
     <link rel="shortcut icon" type="image/x-icon" href="/site_media/images/common/favicon.ico" />
+    {% block css%}{% endblock %}
     <link rel="stylesheet" href="/site_media/css/base.css">
     <link rel="stylesheet" href="/site_media/css/header.css">
     <link rel="stylesheet" href="/site_media/css/content.css">
     <link rel="stylesheet" href="/site_media/css/posts.css">
     <link rel="stylesheet" href="/site_media/css/sidebar.css">
     <link rel="stylesheet" href="/site_media/css/footer.css">
-    <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/site_media/css/common/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <style type="text/css" media="screen">
+        .pace {
+          -webkit-pointer-events: none;
+          pointer-events: none;
 
-    <link rel="stylesheet" media="(max-width: 1000px)" href="example.css" />
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          user-select: none;
+        }
 
+        .pace-inactive {
+          display: none;
+        }
+
+        .pace .pace-progress {
+          background: #00A1F1;
+          position: fixed;
+          z-index: 2000;
+          top: 0;
+          right: 100%;
+          width: 100%;
+          height: 2px;
+        }
+    </style>
     <script>var version='201507131409',dir='{{settings.JSMIN}}';</script>
-    {% block css%}{% endblock %}
     {% block plugin %}{% endblock %}
     <!--[if IE 6]>
     
@@ -28,7 +49,8 @@
     {% include "common/_header.html" %}
     {% block content %}{% endblock content %}
     {% include "common/_footer.html" %}
-    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/site_media/js/jquery.min.js"></script>
+    <script src="/site_media/js/pace.min.js"></script>
     {% block js %}{% endblock %}
 
     {% if not settings.DEBUG %}

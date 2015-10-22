@@ -7,5 +7,4 @@ from django.conf import settings
 
 urlpatterns = patterns('apps.index.index',
     (r'^$', 'index'),        # 首页
-    (r'^login/$', 'login')        # 登陆
 )

@@ -1,36 +1,44 @@
 <div class="box">
     <div class="cell fade bk-fade">
-        个人信息：
+        {% if user.is_authenticated %}个人信息：{% else %}Welcome{% endif %}
     </div>
-    <div class="cell">
-        <table class="user">
-            <tr>
-                <td><img src="//cdn.v2ex.co/gravatar/1c54d8bb7c3e6ed3753ffcafa0ac4865?s=48&d=retro" alt=""></td>
-                <td width="10px"></td>
-                <td>Anybfans</td>
-            </tr>
-        </table>
-        <div class="user-save">
-            <a href="">
-                <span>33</span>
-                <span>节点收藏</span>
-            </a>
-            <a href="">
-                <span>22</span>
-                <span>主题收藏</span>
-            </a>
-            <a href="">
-                <span>1</span>
-                <span>特别关注</span>
-            </a>
+    {% if user.is_authenticated %}
+        <div class="cell">
+            <table class="user">
+                <tr>
+                    <td><img src="//cdn.v2ex.co/gravatar/1c54d8bb7c3e6ed3753ffcafa0ac4865?s=48&d=retro" alt=""></td>
+                    <td width="10px"></td>
+                    <td>{{ user.username }}</td>
+                </tr>
+            </table>
+            <div class="user-save">
+                <a href="">
+                    <span>33</span>
+                    <span>节点收藏</span>
+                </a>
+                <a href="">
+                    <span>22</span>
+                    <span>主题收藏</span>
+                </a>
+                <a href="">
+                    <span>1</span>
+                    <span>特别关注</span>
+                </a>
+            </div>
         </div>
-    </div>
-    <div class="cell">
-    </div>
-    <div class="cell">
-    </div>
-    <div class="cell">
-    </div>
+        <div class="cell">
+        </div>
+        <div class="cell">
+        </div>
+        <div class="cell">
+        </div>
+    {% else %}
+        <div class="not-login" align="center">
+            <a href="/login/?t=2" class="btn" style="color: #fff;">现在注册</a>
+
+            <span class="reg">已注册用户请 &nbsp;<a href="/login/" style="color: #31b0d5;">登陆</a></span>
+        </div>
+    {% endif %}
 </div>
 
 <div class="box top10 ">

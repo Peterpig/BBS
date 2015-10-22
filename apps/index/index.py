@@ -2,29 +2,18 @@
 import inspect
 import logging
 
-from django.shortcuts import render_to_response
+from apps.account.common import render_template
 
 log = logging.getLogger(__name__)
 
 def index(request):
     """首页"""
     context = {}
+    user = request.user
     try:
         num = [i for i in xrange(0,20)]
-        print num
         context['num'] = num
     except Exception, e:
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
-    return render_to_response('index/index.html', context)
-
-
-def login(request):
-    """登陆界面"""
-    context = {}
-    try:
-        pass
-    except Exception, e:
-        log.error("%s:%s" % (inspect.stack()[0][3], e))
-
-    return render_to_response('index/login.html', context)
+    return render_template(request, 'index/index.html', context)

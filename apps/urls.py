@@ -12,6 +12,5 @@ urlpatterns = patterns('',
 
 
 urlpatterns += patterns('',
-     (r'^signup/$', 'apps.account.views.signup'),       # 注册
-     (r'^login/$', 'apps.account.views.login'),         # 登陆
+     (r'', include('apps.account.urls')),         # 注册登陆
 )
