@@ -5,8 +5,6 @@ import markdown
 
 from apps.account.common import render_template
 
-from apps.posts.model import NewArticle
-
 log = logging.getLogger(__name__)
 
 def index(request, id):
@@ -23,8 +21,6 @@ def new(request):
     """发表文章"""
     try:
         context = {}
-        form = NewArticle()
-        context['form'] = form
     except Exception, e:
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 

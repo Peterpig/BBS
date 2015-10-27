@@ -11,7 +11,7 @@
             <div class="topbar-text">
                 <ul class="top-nav">
                     {% if user.is_authenticated  %}
-                        <li><a href="javascript:;">{{request.user}}</a></li>
+                        <li><a href="javascript:;">{{ user.username }}</a></li>
                         <li><a href="/logout/">登出</a></li>
                     {% else %}
                         <li><a href="/login/">登录</a></li>

@@ -1,0 +1,23 @@
+.art{
+    border: 1px solid #CCC;
+    font-family: 'Helvetica Neue', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+}
+.msl{
+    width: 660px;
+    border: none;
+    resize: none;
+    background-color: #f9f9f9;
+    outline: none;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+    font-family: 'Helvetica Neue', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+    margin: 0px;
+}
+.art-detail{
+    float: left;
+    margin-top: 40px;
+}
+.art-detail .tab-block{
+    color: #000;
+}

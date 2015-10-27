@@ -1,1 +1,60 @@
 {% extends "common/_content.html" %}
+{% load duoshuo_tags %}
+{% block css %}
+<link rel="stylesheet" href="/site_media/css/article.css">
+<link rel="stylesheet" href="/site_media/css/new.css">
+{% endblock %}
+{% block title %}创作新主题{% endblock title %}
+{% block body %}
+    <div class="art">
+        <article>
+            <header class="art-header">
+                <div class="art-detail">
+                    <!--
+                    <span class="tab-block">
+                        <i class="fa fa-calendar-check-o fa-lg"></i>
+                        <a href="#">2015-09-22 08:56</a>
+                    </span>
+                    <span class="tab-block">
+                        <i class="fa fa-eye fa-lg"></i>
+                        <a href="#">21K</a>
+                    </span>
+                    <span class="tab-block">
+                        <i class="fa fa-comments-o fa-lg"></i>
+                        <a href="#">210</a>
+                    </span>
+                    <span class="tab-block">
+                        <i class="fa fa-star-o fa-lg"></i>
+                        <a href="#">21</a>
+                    </span>
+
+                    <span class="tab-block">
+                        <i class="fa fa-tag"></i>
+                        <a href="#">风景</a>
+                    </span>
+                    -->
+                    <span class="tab-block">
+                        标题:
+                    </span>
+                </div>
+                <div class="art-title">
+                    <h1>
+                    <textarea class="msl" rows="1" maxlength="120" id="topic_title" name="title" autofocus="autofocus" placeholder="请输入主题标题，如果标题能够表达完整内容，则正文可以为空"></textarea>
+                    </h1>
+                </div>
+            </header>
+
+            <div class="art-content">
+                {{form}}
+            </div>       
+
+            <footer>
+                <!--广告位-->
+            </footer>
+        </article>
+    </div>
+        
+{% endblock body %}
+
+{% block js %}
+{% endblock js %}

@@ -2,16 +2,19 @@
     height: 100%;
     min-height: 1500px;
     min-width: 1000px;
+    width: 100%;
     color: #000;
     overflow: hidden;
     background-color: #fff;
     padding-top: 30px;
+    margin: 0 auto;
 }
 .content a{
     color: #778087;
 }
 .comtent-position{
-    margin: 0 10%;
+    width: 70%;
+    margin: 0 auto;
 }
 .content-l{
     display: inline-block;
