@@ -5,7 +5,7 @@ import markdown
 
 from apps.account.common import render_template
 
-from apps.posts.model import NewArticle
+from libs.models.posts.model import NewArticle
 
 log = logging.getLogger(__name__)
 

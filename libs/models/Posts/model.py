@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+from django import forms
 from django.db import models
 from django.contrib.auth.models import User
+from DjangoUeditor.models import UEditorField
+from  DjangoUeditor.forms import UEditorField
 
 class Posts(models.Model):
     """用户发表帖子类"""
@@ -22,3 +25,7 @@ class Message(models.Model):
 
     class meta:
         db_table = 'message'
+
+
+class NewArticle(forms.Form):
+    Description=UEditorField("描述",initial="abc",width=600,height=800)
