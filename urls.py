@@ -24,5 +24,4 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('', 
     (r'', include('apps.urls')),
-    url(r'^ueditor/',include('DjangoUeditor.urls' )),
     )

@@ -40,6 +40,7 @@
         }
     </style>
     <script>var version='201507131409',dir='{{settings.JSMIN}}';</script>
+    <script src="/site_media/js/jquery.min.js"></script>
     {% block plugin %}{% endblock %}
     <!--[if IE 6]>
     
@@ -49,7 +50,6 @@
     {% include "common/_header.html" %}
     {% block content %}{% endblock content %}
     {% include "common/_footer.html" %}
-    <script src="/site_media/js/jquery.min.js"></script>
     <script src="/site_media/js/pace.min.js"></script>
     {% block js %}{% endblock %}
 
