@@ -20,3 +20,15 @@ def index(request):
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
     return render_template(request, 'index/index.html', context)
+
+
+def wai_index(request):
+    """外首页"""
+    context = Struct()
+    user = request.user
+    try:
+        pass
+    except Exception, e:
+        raise e
+
+    return render_template(request, 'index/wai_index.html', context)

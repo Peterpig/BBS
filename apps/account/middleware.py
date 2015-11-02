@@ -8,10 +8,6 @@ from django.conf import settings as _settings
 log = logging.getLogger(__name__)
 
 anonymous_urls = ['/site_media/', '/media/', '/theme_media/', '/upload_media/']
-anonymous_urls += ['/xheditor/', '/getcode/', '/login/', '/common/', '/help/', '/reg/', '/orallanguage/',
-                  '/calculation/', '/404/', '/local_login_auth/', '/math/pdf_html_save/'
-                  ]
-anonymous_urls += ['/register_open/', '/yd_login/', "/mobile/getSubAppinfo/", "/classupgrade/"]
 
 login_urls = ['/account/improve_user/', '/account/improve_user_submit',
               '/book/', '/post/error_feedback/', 
@@ -34,9 +30,8 @@ class AuthenticationMiddleware(object):
         if user.is_anonymous(): #未登陆跳转首页
             # if path == "/summer/math/" or path == "/summer/english/":
             #     return
-            if path == '/index/':
-                return HttpResponseRedirect("/")
-            return HttpResponseRedirect('/login/?url=%s' % path)   #   ('%s/' % _settings.URLROOT)
+            if path in login_urls:
+                return HttpResponseRedirect('/login/?url=%s' % path)   #   ('%s/' % _settings.URLROOT)
 
     def process_exception(self, request, exception):
         """
