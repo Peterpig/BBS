@@ -10,9 +10,6 @@
 *.bat
 .project
 .pydevprpject
-.settings
 
-log/
 .sass-cache/
-settings.py
 .svn
