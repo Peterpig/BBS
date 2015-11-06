@@ -2,8 +2,10 @@
 #coding=utf-8
 import logging, traceback, os
 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.conf import settings as _settings
+
+from libs.utils.common import Redirect
 
 log = logging.getLogger(__name__)
 

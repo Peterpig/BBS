@@ -4,7 +4,7 @@ import logging
 
 from apps.account.common import render_template, Struct
 
-from libs.models.posts.model import Posts 
+from BBS.libs.models.posts.model import Posts 
 
 log = logging.getLogger(__name__)
 
@@ -16,7 +16,7 @@ def index(request):
         posts_list = Posts.objects.filter(pk__gt=0)
         context['posts_list'] = posts_list
     except Exception, e:
-        print e
+        print "e =======",e
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
     return render_template(request, 'index/index.html', context)
