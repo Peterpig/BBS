@@ -35,28 +35,35 @@
                         <a href="#">风景</a>
                     </span>
                     -->
-                    <span class="tab-block">
-                        标题:
+                    <span class="tab-block" style="font-size: 16px;font-weight: 600;">
+                        标题：
                     </span>
                 </div>
                 <div class="art-title">
                     <h1>
                     <input class="msl" rows="1" maxlength="120" id="title" name="title" autofocus="autofocus" placeholder="请输入主题标题，如果标题能够表达完整内容，则正文可以为空"></input>
-                    </h1>
+                    </h1>&nbsp;&nbsp;
+                    <input type="radio" name="p_type" value="1" checked="checked">评论&nbsp;&nbsp;
+                    <input type="radio" name="p_type" value="2">投票
                 </div>
             </header>
 
-            <textarea class="art-content" name="content" id="content">
-                
-            </textarea>
+            <textarea class="art-content" name="content" id="content"></textarea>
 
+
+            <div class="option-list" style="display: none;">
+                <div style="float: right; margin-right: 5px">
+                    <button class="button_small" type="button" onclick="add_option()"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;添加选项</button>    
+                </div>
+                <span style="font-size: 14px;font-weight: 400;">选项：<br></span>
+                <input class="msl option" rows="1" maxlength="120" id="option" name="option" placeholder="请输入要投票的选项"></input>
+            </div>
             <div class="tab-select">
                 <select name="tag" id="select" class="from-control">
                     <option value="0" disabled selected>请选择一个节点</option>
-                    <option value="第二个选项">第二个选项</option>
-                    <option value="第三个选项">第三个选项</option>
-                    <option value="第四个选项">第四个选项</option>
-                    <option value="第五个选项">第五个选项</option>
+                    {% for c in catalog_list %}
+                        <option value="{{c.id}}">{{c.name}}</option>
+                    {% endfor %}
                 </select>
             </div>
 
@@ -80,4 +87,18 @@
 <script src="/site_media/js/new.js" type="text/javascript" charset="utf-8"></script>
 <script src="/site_media/js/jquery.form.js"></script>
 <script src="/site_media/js/layer.js"></script>
+<script>
+    $(function(){
+        $("input:radio[name=p_type]").click(function() {
+            var value = $(this).val();
+            if (value === "2") {
+                $(".mce-panel").hide();
+                $(".option-list").show();
+            }else{
+                $(".mce-panel").show();
+                $(".option-list").hide();
+            }
+        });
+    });
+</script>
 {% endblock js %}

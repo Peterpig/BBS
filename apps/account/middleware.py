@@ -38,10 +38,6 @@ class AuthenticationMiddleware(object):
     def process_exception(self, request, exception):
         """
         功能说明:view函数抛出异常处理
-        -------------------------------
-        修改人     修改时间
-        --------------------------------
-        徐威      2013-07-17
         """
         path = str(request.path)
 
