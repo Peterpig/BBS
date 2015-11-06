@@ -1,10 +1,72 @@
 {% extends "common/base.html" %}
 {% block css %}
-    <link rel="stylesheet" href="/site_media/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/site_media/css/wai_index.css">
+<link rel="stylesheet" href="/site_media/bootstrap/css/bootstrap.min.css">
+<style type="text/css">
+    input{
+        line-height: normal;
+    }
+</style>
 {% endblock css %}
 
 {% block content %}
-    
+    <div class="row wai-index">
+        <div class="col-md-3">
+            <div class="user_left_info">
+                <span><a href="#">{{user.username}}</a></span>
+                <span><img src="//cdn.v2ex.co/gravatar/1c54d8bb7c3e6ed3753ffcafa0ac4865?s=48&d=retro" alt=""></span>
+            </div>
+            <div class="user-save">
+                <a href="">
+                    <span>33</span>
+                    <span>粉丝</span>
+                </a>
+                <a href="">
+                    <span>22</span>
+                    <span>关注</span>
+                </a>
+                <a href="">
+                    <span>1</span>
+                    <span>xxx</span>
+                </a>
+            </div>
+            <div class="catalog-list">
+                <ul>
+                    {% for c in catalog_list %}
+                        <li>
+                            <span class="li-num" style="color:{{c.rgb}}">{{forloop.counter}}</span>
+                            <a class="li-catalog" href="#">
+                                <span style="color:{{c.rgb}}">{{c.name}}&nbsp;</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            s2
+        </div>
+
+        <div class="col-md-3">
+            <div class="top-list">
+                <span>A、最多关注的榜单</span>
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="top-list">
+                <span>B、最新发布的榜单</span>
+            </div>
+            <div class="top-list">
+                <span>C、最后投票的榜单</span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            s4
+        </div>
+    </div>
 {% endblock content %}
 
 {% block js %}

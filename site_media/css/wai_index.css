@@ -1,0 +1,46 @@
+.wai-index{
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    background-color: #fff;
+}
+.col-md-3{
+    border-right: 1px solid #CCC;
+    margin: 0 auto;
+}
+.col-md-3 .user_left_info{
+    width: 15%;
+    margin: 0 auto;
+    padding-right: 10px;
+}
+.user_left_info span{
+    font-size: 16px;
+    display: block;
+    padding: 5px;
+}
+.user_left_info span img{
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.catalog-list{
+    width: 25%;
+    margin: 0 auto;
+    font-size: 18px;
+}
+
+.catalog-list li{
+    margin: 5px 0;
+    padding: 10px 0;
+    list-style: none;
+}
+
+li .li-num{
+    padding: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.top-list li{
+    list-style: none;
+}
