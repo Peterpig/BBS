@@ -25,7 +25,7 @@ DATABASES = {
     }
 }
 
-DATABASES = {
+DATABASES1 = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'bbs',                      # Or path to database file if using sqlite3.
@@ -120,7 +120,6 @@ INSTALLED_APPS = (
     'libs.models.posts',
     'libs.tag',
     'duoshuo',
-    'DjangoUeditor',
 )
 
 # 多说
