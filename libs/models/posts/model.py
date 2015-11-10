@@ -11,8 +11,8 @@ class Posts(models.Model):
     user = models.ForeignKey(User)
     type = models.IntegerField(u'类型', default=1)
     views = models.IntegerField(u'点击量', default=0)
-    content = models.TextField(u'内容')
-    add_time = models.DateField(u'添加时间', auto_now_add=True)
+    content = models.CharField(u'内容')
+    add_time = models.DateField(u'添加时间')
     catalog = models.ForeignKey(Catalog)
 
     class Meta:

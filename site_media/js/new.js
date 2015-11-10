@@ -27,7 +27,14 @@ function submit_content() {
     var data_dict = {"data_dict":JSON.stringify(post_dic)}
     $.post('/new/', data_dict, function(d) {
         if (d.response == 'ok') {
-            location.href = '/t/'+d.data
+            //墨绿深蓝风
+            layer.alert('墨绿风格，点击确认看深蓝', {
+                skin: 'layui-layer-molv' //样式类名
+                ,closeBtn: 0
+            }, function(){
+                location.href = '/t/'+d.data;
+            });
+
         }else if(d.response == 'fail'){
             layer.alert(d.error, {icon: 5, shift: 6, time: 2000});
         }

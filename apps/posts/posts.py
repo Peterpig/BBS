@@ -11,21 +11,38 @@ from django.http import HttpResponse
 from apps.account.common import render_template, Struct
 from libs.utils.ajax import ajax_ok, ajax_fail
 
-from libs.models.posts.model import Posts, Options
+from libs.models.posts.model import Posts, Options, Vote
 from libs.models.catalog.model import Catalog
 
 log = logging.getLogger(__name__)
 
 def index(request, id):
     """文章首页"""
+    user = request.user
+    all_vote = 0
     try:
         context = Struct()
         try:
             id = int(id)
         except Exception, e:
             return HttpResponse("/")
+
         posts = Posts.objects.seek(pk=id)
+        if posts.type == 2:
+            option_list = Options.objects.filter(posts=posts)
+            all_vote = Vote.objects.filter(option__in=option_list).count()
+            for option in option_list:
+                v_count = Vote.objects.filter(
+                                option__id=option.id
+                            ).count()
+
+                # 每个选项的票数
+                option.v_count = v_count
+
+                # 每个选项的百分比
+                option.present = int(float(v_count)/float(all_vote)) if all_vote else 0
         context.posts = posts
+        context.option_list = option_list
     except Exception, e:
         print e
         log.error("%s:%s" % (inspect.stack()[0][3], e))
@@ -60,16 +77,24 @@ def new(request):
             if not data_dict['tag']:
                 return ajax_fail('请选择一个分类！')
 
-            if type == 1:
+            if data_dict['type'] == 1:
                 # 评论
+                print "yeyey"
                 posts = Posts(
                         title = data_dict['title'],
-                        user = user,
+                        user = user.id,
+                        type = data_dict['type'],
                         content = data_dict['content'],
                         add_time = datetime.datetime.now(),
-                        type = data_dict['type'],
                         catalog__id = data_dict['tag']
                     )
+                print "222"
+                print "posts.id == ",posts.id
+                print "posts.user == ",posts.user
+                print "posts.type == ",posts.type
+                print "posts.content == ",posts.content
+                print "posts.add_time == ",posts.add_time
+                print "posts.catalog__id == ",posts.catalog__id
                 posts.save()
             else:
                 # 投票
@@ -85,16 +110,15 @@ def new(request):
                 option_list = data_dict['option']
                 for option in option_list:
                     o = Options(
-                            posts = p,
+                            posts_id = p.id,
                             content = option
                         )
-                    print "o === ",o
                     o.save()
+
             return ajax_ok(p.id)
 
         # GET
         catalog_list = Catalog.objects.filter(pk__gt=0)
-        print "catalog_list == ",catalog_list
         context['catalog_list'] = catalog_list
     except Exception, e:
         print e

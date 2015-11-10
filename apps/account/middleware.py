@@ -11,23 +11,21 @@ log = logging.getLogger(__name__)
 
 anonymous_urls = ['/site_media/', '/media/', '/theme_media/', '/upload_media/']
 
-login_urls = ['/account/improve_user/', '/account/improve_user_submit',
-              '/book/', '/post/error_feedback/', 
-              ]
+login_urls = ['/t/','/new/']
 
 class AuthenticationMiddleware(object):
     def process_request(self, request):
         path = str(request.path)
-        
+
         if path == '/':
             return
-        
+
         for obj in anonymous_urls:
             if path.startswith(obj):
                 return
-        
+
         user = request.user
-        
+
         #需要登录访问
         if user.is_anonymous(): #未登陆跳转首页
             # if path == "/summer/math/" or path == "/summer/english/":
@@ -54,7 +52,7 @@ class AuthenticationMiddleware(object):
             raise Http404('AssertionError: %s' % exception.message)
         if isinstance(exception, Redirect):
             return HttpResponseRedirect(exception.url)
-        
+
         # 如果请求的路径为 js css 文件 不处理
         if path.startswith('/site_media/'):
             return None

@@ -11,7 +11,7 @@
     </div>
 -->
     <div class="posts">
-        {% for t in posts_list %}       
+        {% for t in posts_list %}
             <div class="cell cell-hover">
                 <div class="cell-avatar">
                     <a href="/member/Vkin">
@@ -27,7 +27,7 @@
                     <div class="height5"></div>
                     <span class="bottom">
                         <i class="fa fa-tags gray"></i>
-                        <a class="node" href="#">{{t.tag}}</a> &nbsp;•&nbsp; 
+                        <a class="node" href="#">{{t.catalog.name}}</a> &nbsp;•&nbsp;
                         <a href="#">{{t.user.first_name}}</a>
                         &nbsp;•&nbsp;
                         <span href="#">最后回复来自 <strong>AAA</strong></span>
