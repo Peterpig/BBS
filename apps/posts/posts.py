@@ -77,24 +77,18 @@ def new(request):
             if not data_dict['tag']:
                 return ajax_fail('请选择一个分类！')
 
-            if data_dict['type'] == 1:
+            type = int(data_dict['type'])
+            if type == 1:
                 # 评论
-                print "yeyey"
                 posts = Posts(
                         title = data_dict['title'],
-                        user = user.id,
-                        type = data_dict['type'],
+                        user = user,
                         content = data_dict['content'],
                         add_time = datetime.datetime.now(),
+                        type = data_dict['type'],
                         catalog__id = data_dict['tag']
                     )
-                print "222"
-                print "posts.id == ",posts.id
-                print "posts.user == ",posts.user
-                print "posts.type == ",posts.type
-                print "posts.content == ",posts.content
-                print "posts.add_time == ",posts.add_time
-                print "posts.catalog__id == ",posts.catalog__id
+                print "posts.content ==",posts.content
                 posts.save()
             else:
                 # 投票
