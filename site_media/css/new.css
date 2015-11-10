@@ -17,6 +17,7 @@
 .art-detail{
     float: left;
     margin-top: 40px;
+    display: inline-block;
 }
 .art-detail .tab-block{
     color: #000;

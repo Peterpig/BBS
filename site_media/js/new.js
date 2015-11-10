@@ -23,11 +23,9 @@ function submit_content() {
         layer.tips("请选择一个分类！", "#select", {tips: [1, '#3595CC'],time: 2500});
         return
     }
-    alert(option);
     var post_dic = {"title": title, "content": content, "option":option, "tag":tag, "type":type};
     var data_dict = {"data_dict":JSON.stringify(post_dic)}
     $.post('/new/', data_dict, function(d) {
-        d = eval('('+d+')');
         if (d.response == 'ok') {
             location.href = '/t/'+d.data
         }else if(d.response == 'fail'){
@@ -45,5 +43,5 @@ function add_option() {
         len = len - 1;
         $("#option"+len).after(html);
     }
-    
+
 }

@@ -3,6 +3,7 @@ import datetime
 import inspect
 import logging
 
+
 import simplejson as json
 
 from django.http import HttpResponse
@@ -69,6 +70,7 @@ def new(request):
                         type = data_dict['type'],
                         catalog__id = data_dict['tag']
                     )
+                posts.save()
             else:
                 # 投票
                 p = Posts(
@@ -78,7 +80,6 @@ def new(request):
                     type = data_dict['type'],
                     catalog_id = data_dict['tag']
                     )
-                print "p === ",p.id, p.title
                 p.save()
                 # 添加选项内容
                 option_list = data_dict['option']
