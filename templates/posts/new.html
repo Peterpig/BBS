@@ -43,20 +43,22 @@
                     <h1>
                     <input class="msl" rows="1" maxlength="120" id="title" name="title" autofocus="autofocus" placeholder="请输入主题标题，如果标题能够表达完整内容，则正文可以为空"></input>
                     </h1>&nbsp;&nbsp;
-                    <input type="radio" name="p_type" value="1" checked="checked">评论&nbsp;&nbsp;
-                    <input type="radio" name="p_type" value="2">投票
+                    <input type="radio" name="p_type" value="2"checked="checked">投票
+                    <input type="radio" name="p_type" value="1">评论&nbsp;&nbsp;
                 </div>
             </header>
 
-            <textarea class="art-content" name="content" id="content"></textarea>
+            <textarea class="art-content" name="content" id="content" style="display: none;"></textarea>
 
 
-            <div class="option-list" style="display: none;">
+            <div class="option-list">
                 <div style="float: right; margin-right: 5px">
                     <button class="button_small" type="button" onclick="add_option()"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;添加选项</button>
                 </div>
                 <span style="font-size: 14px;font-weight: 400;">选项：<br></span>
-                <input class="msl option" rows="1" maxlength="120" id="option" name="option" placeholder="请输入要投票的选项"></input>
+                <input class="msl option" rows="1" maxlength="120" id="option" name="option_d1" placeholder="请输入要投票的选项"></input>
+                <input class="msl option" rows="1" maxlength="120" id="option" name="option_d2" placeholder="请输入要投票的选项"></input>
+                <input class="msl option" rows="1" maxlength="120" id="option" name="option_d3" placeholder="请输入要投票的选项"></input>
             </div>
             <div class="tab-select">
                 <select name="tag" id="select" class="from-control">

@@ -27,8 +27,7 @@ function submit_content() {
     var data_dict = {"data_dict":JSON.stringify(post_dic)}
     $.post('/new/', data_dict, function(d) {
         if (d.response == 'ok') {
-            //墨绿深蓝风
-            layer.alert('墨绿风格，点击确认看深蓝', {
+            layer.alert('发表成功！', {
                 skin: 'layui-layer-molv' //样式类名
                 ,closeBtn: 0
             }, function(){
@@ -44,7 +43,7 @@ function submit_content() {
 function add_option() {
     var len = $(".option").length;
     var html = '<input class="msl option" rows="1" maxlength="120" id="option'+ len + '" name="option' + len + '" placeholder="请输入要投票的选项"></input>';
-    if (len === 1) {
+    if (len === 3) {
         $("#option").after(html);
     }else{
         len = len - 1;

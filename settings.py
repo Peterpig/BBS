@@ -25,7 +25,7 @@ DATABASES = {
     }
 }
 
-DATABASES1 = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'bbs',                      # Or path to database file if using sqlite3.
