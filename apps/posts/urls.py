@@ -8,4 +8,5 @@ from django.conf import settings
 urlpatterns = patterns('apps.posts.posts',
     (r'^t/(?P<id>\d+)/$', 'index'),    # 文章单页
     (r'new/$', 'new'),   # 发表新文章
+    (r'upload_img/$', 'upload_img'),   # 发表新文章
     )

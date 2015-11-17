@@ -119,3 +119,12 @@ def new(request):
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
     return render_template(request, 'posts/new.html', context)
+
+
+def upload_img(request):
+    """上传图片"""
+    try:
+        pass
+    except Exception, e:
+        raise e
+    print "Ssss"

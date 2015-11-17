@@ -145,4 +145,4 @@ fileLog.setFormatter(formatter)
 logging.getLogger('web').addHandler(fileLog)
 logging.getLogger('web').setLevel(logging.DEBUG)
 logging.getLogger('web').info("web.com Started")
-CACHE_BACKEND = 'file://F:/project/django_cache'
+CACHE_BACKEND = 'file://F:/django_cache'

@@ -7,7 +7,7 @@
     position: relative;
     height: 50px;
     line-height: 50px;
-    background-color: #F5F5F5;
+    background-color: #34A853;
     border-bottom: 1px solid #e5e5e5;
 }
 
@@ -29,7 +29,7 @@
     height: 40px;
     margin-top: 5px;
     margin-bottom: 5px;
-    background: url("//cdn.v2ex.co/site/logo@2x.png?m=1346064962") 0 0 no-repeat;
+    background: url("/site_media/images/common/logo.png") 0 0 no-repeat;
     background-size: 100px 40px;
 }
 
@@ -87,5 +87,5 @@
 }
 
 .topbar-text a{
-    color: #4183c4;
+    color: #fff;
 }

@@ -127,5 +127,9 @@
     margin-top: 10px;
 }
 .option{
-    margin-top: 10px;
+    margin-top: 15px;
+    border: 1px solid #AAD7FF;
+}
+.option:focus{
+    border: 2px solid #4285F4;
 }

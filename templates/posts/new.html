@@ -3,6 +3,7 @@
 {% block css %}
 <link rel="stylesheet" href="/site_media/css/article.css">
 <link rel="stylesheet" href="/site_media/css/new.css">
+<link rel="stylesheet" href="/site_media/css/common/uploadify.css"></script>
 {% endblock %}
 {% block title %}创作新主题{% endblock title %}
 {% block body %}
@@ -55,10 +56,21 @@
                 <div style="float: right; margin-right: 5px">
                     <button class="button_small" type="button" onclick="add_option()"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;添加选项</button>
                 </div>
-                <span style="font-size: 14px;font-weight: 400;">选项：<br></span>
-                <input class="msl option" rows="1" maxlength="120" id="option" name="option_d1" placeholder="请输入要投票的选项"></input>
-                <input class="msl option" rows="1" maxlength="120" id="option" name="option_d2" placeholder="请输入要投票的选项"></input>
-                <input class="msl option" rows="1" maxlength="120" id="option" name="option_d3" placeholder="请输入要投票的选项"></input>
+                <span style="font-size: 16px;font-weight: 600;">选项：<br></span>
+                <div class="o-option">
+                    <div class="btnAndInput">
+                        <input class="msl option" rows="1" maxlength="120" id="option" name="option_d1" placeholder="请输入要投票的选项"></input>
+                        <button type="button">添加图片</button>
+                    </div>
+                    <div class="btnAndInput">
+                        <input class="msl option" rows="1" maxlength="120" id="option" name="option_d2" placeholder="请输入要投票的选项"></input>
+                        <button type="button">添加图片</button>
+                    </div>
+                    <div class="btnAndInput">
+                        <input class="msl option" rows="1" maxlength="120" id="option" name="option_d3" placeholder="请输入要投票的选项"></input>
+                        <button type="button">添加图片</button>
+                    </div>
+                </div>
             </div>
             <div class="tab-select">
                 <select name="tag" id="select" class="from-control">
@@ -83,12 +95,14 @@
         </article>
     </div>
     </form>
+<input id="file_upload" name="file_upload" type="file" multiple="true">
 {% endblock body %}
 
 {% block js %}
 <script src="/site_media/js/new.js" type="text/javascript" charset="utf-8"></script>
 <script src="/site_media/js/jquery.form.js"></script>
 <script src="/site_media/js/layer.js"></script>
+<script src="/site_media/js/uploadify/jquery.uploadify.min.js"></script>
 <script>
     $(function(){
         $("input:radio[name=p_type]").click(function() {
@@ -100,6 +114,10 @@
                 $(".mce-panel").show();
                 $(".option-list").hide();
             }
+        });
+        $('#file_upload').uploadify({
+            'swf': '/site_media/js/uploadify/uploadify.swf',    //指定上传控件的主体文件
+            'uploader' : '/upload_img/'//指定服务器端上传处理文件
         });
     });
 </script>
