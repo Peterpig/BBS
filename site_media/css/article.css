@@ -60,6 +60,13 @@
     overflow: hidden;
 }
 
+.art-content .vote-list{
+    display: block;
+    border: 1px solid #AAD7FF;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
 @media only screen and (max-width : 1000px){
     .art-content{
         margin: 20px auto;

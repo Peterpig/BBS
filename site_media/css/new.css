@@ -4,6 +4,7 @@
 }
 .msl{
     width: 660px;
+    height: 100px;
     border: none;
     resize: none;
     background-color: #f9f9f9;
@@ -121,6 +122,10 @@
     background-color: #5cb85c;
     border-color: #4cae4c;
 }
+.btnAndInput{
+    display: inline-block;
+}
+
 .option-list{
     margin-left: 5px;
     margin-top: 10px;
@@ -128,6 +133,8 @@
 .option{
     margin-top: 15px;
     border: 1px solid #AAD7FF;
+    border-radius: 10px;
+    display: inline-block;
 }
 .option:focus{
     border: 2px solid #4285F4;
