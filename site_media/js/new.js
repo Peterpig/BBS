@@ -10,13 +10,15 @@ function submit_content() {
         return
     }
     if (type === "2") {
-        var option_first = $("input[name=option]").val();
+        var option_first = $("textarea[name=option_d1]").val();
         if (option_first === "") {
             layer.tips("请至少填写一个选项！", "#option", {tips: [1, '#3595CC'],time: 2500});
             return
         }
-        $(".option").each(function() {
-            option.push($(this).val());
+        $(".btnAndInput .option").each(function() {
+            if ($(this).val() !== "") {
+                option.push($(this).val());
+            };
         })
     }
     if (tag === "0") {
@@ -42,16 +44,28 @@ function submit_content() {
 
 function add_option() {
     var len = $(".option").length;
-    var html = '<input class="msl option" rows="1" maxlength="120" id="option'+ len + '" name="option' + len + '" placeholder="请输入要投票的选项"></input>';
+    var html = '<div class="btnAndInput"><textarea class="msl option" rows="5" maxlength="120" id="option'+ len + '" name="option' + len + '" placeholder="请输入要投票的选项"></textarea><button type="button" class="button_small" data-id="option'+ len + '">添加图片</button>';
     if (len === 3) {
-        $("#option").after(html);
+        $("#option2").parent().after(html);
     }else{
         len = len - 1;
-        $("#option"+len).after(html);
+        $("#option"+len).parent().after(html);
     }
 
 }
 
 function ImageUpload(){
-    
+    $(".fileForm").ajaxSubmit(function(d){
+        if (d.code == 'error') {
+            layer.msg('上传失败');
+        }else if(d.code == 'success'){
+            var data = d.data;
+            var url = data.url;
+            var str = '<img width="200px" height="100px" src="'+ url +' "></img>';
+            $("#imghidden").attr('imgurlstr', str);
+            layer.msg('上传成功！',{
+                icon:1
+            });
+        }
+    })
 }

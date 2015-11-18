@@ -137,6 +137,10 @@ INSTALLED_APPS = (
 DUOSHUO_SECRET = 'a3dcf354281277048fd7f27922727de1'
 DUOSHUO_SHORT_NAME = 'zhuzh'
 
+# imgurl
+UPLOAD_IMG_API = 'https://sm.ms/api/upload'
+IMG_START = 'https://ooo.0o0.ooo/'
+
 AUTH_PROFILE_MODULE = 'account.Profile'
 # 日志配置
 LOGDIR = os.path.join(DIRNAME, "log")

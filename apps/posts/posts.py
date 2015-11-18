@@ -7,6 +7,7 @@ import logging
 import simplejson as json
 
 from django.http import HttpResponse
+from django.conf import settings
 
 from apps.account.common import render_template, Struct
 from libs.utils.ajax import ajax_ok, ajax_fail
@@ -114,17 +115,10 @@ def new(request):
         # GET
         catalog_list = Catalog.objects.filter(pk__gt=0)
         context['catalog_list'] = catalog_list
+        context['UPLOAD_IMG_API'] = settings.UPLOAD_IMG_API
+        context['IMG_START'] = settings.IMG_START
     except Exception, e:
         print e
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
     return render_template(request, 'posts/new.html', context)
-
-
-def upload_img(request):
-    """上传图片"""
-    try:
-        pass
-    except Exception, e:
-        raise e
-    print "Ssss"
