@@ -34,8 +34,13 @@
             {% else %}
                 {% for option in option_list %}
                     <div class="vote-list">
-                        {{option.content|safe}}
-                        {{option.v_count}} 票
+                        <table>
+                            <tr>
+                                <td class="img-table">{{option.img|safe}}</td>
+                                <td>{{option.content|safe}}</td>
+                                <td>{{option.v_count}} 票</td>
+                            </tr>
+                        </table>
                     </div>
                 {% endfor %}
             {% endif %}
