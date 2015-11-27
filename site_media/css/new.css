@@ -152,3 +152,15 @@
 .fileTable .button_small{
     float: right;
 }
+.msl-title{
+    width: 660px;
+    border: none;
+    resize: none;
+    background-color: #f9f9f9;
+    outline: none;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+    font-family: 'Helvetica Neue', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+    margin: 0px;
+}
