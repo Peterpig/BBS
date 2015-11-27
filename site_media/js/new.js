@@ -17,7 +17,12 @@ function submit_content() {
         }
         $(".btnAndInput .option").each(function() {
             if ($(this).val() !== "") {
-                option.push($(this).val());
+                var id = $(this).attr('id');
+
+                var dic = {};
+                dic.val = $(this).val();
+                dic.img = $("#"+id+"_img").val();
+                option.push(dic);
             };
         })
     }
@@ -44,7 +49,7 @@ function submit_content() {
 
 function add_option() {
     var len = $(".option").length;
-    var html = '<div class="btnAndInput"><textarea class="msl option" rows="5" maxlength="120" id="option'+ len + '" name="option' + len + '" placeholder="请输入要投票的选项"></textarea><button type="button" class="button_small" data-id="option'+ len + '">添加图片</button>';
+    var html = '<div class="btnAndInput"><textarea class="msl option" rows="5" maxlength="120" id="option'+ len + '" name="option' + len + '" placeholder="请输入要投票的选项"></textarea><button type="button" class="button_small" data-id="option'+ len + '">添加图片</button><input type="text" id="option'+len+'_img" name="option'+len+'_img" value="" hidden>';
     if (len === 3) {
         $("#option2").parent().after(html);
     }else{
@@ -61,7 +66,7 @@ function ImageUpload(){
         }else if(d.code == 'success'){
             var data = d.data;
             var url = data.url;
-            var str = '<img width="200px" height="100px" src="'+ url +' "></img>';
+            var str = '<img height="200px" src="'+ url +' "></img>';
             $("#imghidden").attr('imgurlstr', str);
             layer.msg('上传成功！',{
                 icon:1

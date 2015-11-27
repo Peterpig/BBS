@@ -64,13 +64,6 @@ def new(request):
             # type = int(request.POST.get('type', 1))
 
             data_dict = json.loads(data_dict)
-            print "data_dict == ",data_dict
-            print "*"*15
-            print "title == ",data_dict['title']
-            print "content == ",data_dict['content']
-            print "tag == ",data_dict['tag']
-            print "type == ",data_dict['type']
-            print "*"*15
 
             if not data_dict['title']:
                 return ajax_fail('文章标题不能为空')
@@ -106,7 +99,8 @@ def new(request):
                 for option in option_list:
                     o = Options(
                             posts_id = p.id,
-                            content = option
+                            content = option['val'],
+                            img = option['img']
                         )
                     o.save()
 

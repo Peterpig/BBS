@@ -61,14 +61,17 @@
                     <div class="btnAndInput">
                         <textarea class="msl option" rows="5" maxlength="120" id="option" name="option_d1" placeholder="请输入要投票的选项"></textarea>
                         <button type="button" class="button_small" data-id="option">添加图片</button>
+                        <input type="text" id="option_img" name="option_img" value="" hidden>
                     </div>
                     <div class="btnAndInput">
                         <textarea class="msl option" rows="5" maxlength="120" id="option1" name="option_d2" placeholder="请输入要投票的选项"></textarea>
                         <button type="button" class="button_small" data-id="option1">添加图片</button>
+                        <input type="text" id="option1_img" name="option1_img" value="" hidden>
                     </div>
                     <div class="btnAndInput">
                         <textarea class="msl option" rows="5" maxlength="120" id="option2" name="option_d3" placeholder="请输入要投票的选项"></textarea>
                         <button type="button" class="button_small" data-id="option2">添加图片</button>
+                        <input type="text" id="option2_img" name="option2_img" value="" hidden>
                     </div>
                 </div>
             </div>
@@ -127,9 +130,8 @@
                 area: ['420px', '240px'], //宽高
                 btn: ['确定','取消'], //按钮
                 btn1: function(){
-                    var val = $("#"+text_id).val();
-                    var val = val + $("#imghidden").attr('imgurlstr');
-                    $("#"+text_id).val(val);
+                    var val = $("#imghidden").attr('imgurlstr');
+                    $("#"+text_id+"_img").val(val);
                 },
                 content: "<form class='fileForm' method='post' action='{{UPLOAD_IMG_API}}'><table class='fileTable'><tr><td>上传图片：</td><td><input id='smfile' name='smfile' type='file' multiple='true'></td></tr><tr><td></td><td id='img_show'><button type='button' onclick='ImageUpload()' class='button_small'>上传</button></td></tr></table></form>",
             });
