@@ -1,0 +1,93 @@
+{% extends "common/_content.html" %}
+{% block css %}
+    <link rel="stylesheet" href="/site_media/css/user_index.css">
+{% endblock %}
+{% block body %}
+    <div class="posts">
+        <div class="cell cell-hover">
+            <div class="fr"><span>如果你不打算更改密码，请留空以下区域
+            </span>
+            </div>更改密码
+
+            <form action="/member/user_index/">
+
+                <div class="cell cell-hover">
+                    <span class="mi-span">当前密码</span>
+                    <input type="password" class="msl" name="password_current">
+                </div>
+                <div class="cell cell-hover">
+                    <span class="mi-span">新密码</span>
+                    <input type="password" class="msl" name="password_new">
+                </div>
+                <div class="cell cell-hover">
+                    <span class="mi-span">再次输入新密码</span>
+                    <input type="password" class="msl" name="password_new2">
+                </div>
+                <div>
+                    <span class="mi-span"></span>
+                    <button type="password" class="button_small">更改密码</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="cell cell-hover">
+            <div class="fr"><span>如果你不打算更改头像，请留空以下区域
+            </span>
+            </div>
+
+            <form id="header-img" action="{{UPLOAD_IMG_API}}" method='post'>
+                <div class="">
+                    <span class="mi-span">更换头像</span>
+                    <input id='smfile' name='smfile' type='file' multiple='true'>
+                </div>
+                <div>
+                    <span class="mi-span"></span>
+                    <button type="password" class="button_small" onclick="ImageUpload()">上传</button>
+                </div>
+            </form>
+        </div>
+        <div class="cell cell-hover">
+            <div class="cell-avatar">
+                <span href="/member/Vkin">
+                </span>
+            </div>
+            <div class="cell-text">
+                <span class="posts-title">
+                    <a href="/t/{{t.id}}/">
+                        {{t.title}}
+                    </a>
+                </span>
+                <div class="height5"></div>
+                <span class="bottom">
+                    <i class="fa fa-tags gray"></i>
+                    <a class="node" href="#">{{t.catalog.name}}</a> &nbsp;•&nbsp;
+                    <a href="#">{{t.user.first_name}}</a>
+                    &nbsp;•&nbsp;
+                    <span href="#">最后回复来自 <strong>AAA</strong></span>
+                </span>
+            </div>
+        </div>
+        </form>
+    </div>
+
+{% endblock body %}
+
+{% block js%}
+    <script>
+        function ImageUpload(){
+            $("#header-img").ajaxSubmit(function(d){
+                if (d.code == 'error') {
+                    layer.msg('上传失败');
+                }else if(d.code == 'success'){
+                    var data = d.data;
+                    var url = data.url;
+                    var str = '<img height="200px" src="'+ url +' "></img>';
+                    $("#imghidden").attr('imgurlstr', str);
+                    layer.msg('上传成功！',{
+                        icon:1
+                    });
+                }
+            })
+        }
+    </script>
+{% endblock%}

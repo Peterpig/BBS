@@ -14,3 +14,7 @@ urlpatterns = patterns('',
 urlpatterns += patterns('',
      (r'', include('apps.account.urls')),         # 注册登陆
 )
+
+urlpatterns += patterns('',
+     (r'^member/', include('apps.account.urls')),         # 注册登陆
+)

@@ -123,6 +123,7 @@
 
         $(".btnAndInput .button_small").click(function(){
             var text_id = $(this).attr('data-id');
+            var that = $(this);
             layer.open({
                 type: 1,
                 title: '上传图片',
@@ -132,6 +133,8 @@
                 btn1: function(){
                     var val = $("#imghidden").attr('imgurlstr');
                     $("#"+text_id+"_img").val(val);
+                    $(that).attr("disabled","disabled");
+                    $(that).text("图片已上传");
                 },
                 content: "<form class='fileForm' method='post' action='{{UPLOAD_IMG_API}}'><table class='fileTable'><tr><td>上传图片：</td><td><input id='smfile' name='smfile' type='file' multiple='true'></td></tr><tr><td></td><td id='img_show'><button type='button' onclick='ImageUpload()' class='button_small'>上传</button></td></tr></table></form>",
             });
