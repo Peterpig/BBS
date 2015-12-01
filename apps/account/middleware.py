@@ -7,14 +7,44 @@ from django.conf import settings as _settings
 
 from libs.utils.common import Redirect
 
+from libs.models.account.model import UserProfile
+
 log = logging.getLogger(__name__)
 
 anonymous_urls = ['/site_media/', '/media/', '/theme_media/', '/upload_media/']
 
 login_urls = ['/t/','/new/']
 
+class ProfilUser(object):
+    def __init__(self,user):
+        self.user = user
+        
+    def __get__(self, request, obj_type=None):
+        if not hasattr(request, '_cached_user_power'):
+            user = self.user
+            up = UserProfile.objects.seek(user=user)
+            if up:
+                user.name = up.name
+                user.header_img = up.header_img
+            else:
+                up = UserProfile(
+                        user=user,
+                        name=user.username,
+                        header_img=url
+                    )
+                up.save()
+                user.name = up.name
+                user.header_img = up.img
+                
+            request._cached_user_power = user
+        return request._cached_user_power
+
 class AuthenticationMiddleware(object):
     def process_request(self, request):
+        if not request.user.is_anonymous():
+            # 非匿名用户增加权限
+            request.__class__.user = ProfilUser(request.user)
+
         path = str(request.path)
 
         if path == '/':

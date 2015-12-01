@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{% block title %}{% endblock %}_转转排行网</title>
+    <title>{% block title %}{% endblock %}-转转排行网</title>
     <meta name="descriptions" content="转转排行网">
     <meta name="keywords" content="zhuan,排行,zhuanzhuan排行网">
     <link rel="shortcut icon" type="image/x-icon" href="/site_media/images/common/favicon.ico" />
@@ -39,8 +39,8 @@
           height: 2px;
         }
     </style>
-    <script>var version='201507131409',dir='{{settings.JSMIN}}';</script>
     <script src="/site_media/js/jquery.min.js"></script>
+    
     {% block plugin %}{% endblock %}
     <!--[if IE 6]>
 
@@ -50,7 +50,9 @@
     {% include "common/_header.html" %}
     {% block content %}{% endblock content %}
     {% include "common/_footer.html" %}
+    <script src="/site_media/js/jquery.form.js"></script>
     <script src="/site_media/js/pace.min.js"></script>
+    <script src="/site_media/js/layer.js"></script>
     {% block js %}{% endblock %}
 
     {% if not settings.DEBUG %}

@@ -10,8 +10,7 @@ urlpatterns = patterns('apps.account.views',
      (r'^logout/$', 'logout_'),         # 登出
 )
 
-print "sss"
-
 urlpatterns += patterns('apps.account.account',
      (r'^(?P<name>\w+)/$', 'user_index'),       # 个人中心
+     (r'^profile/change_header_img/$', 'change_header_img'),       # 个人中心
 )
