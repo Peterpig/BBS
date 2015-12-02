@@ -39,7 +39,7 @@
           height: 2px;
         }
     </style>
-    <script src="/site_media/js/jquery.min.js"></script>
+    
     
     {% block plugin %}{% endblock %}
     <!--[if IE 6]>
@@ -47,12 +47,14 @@
     <![endif]-->
 </head>
 <body background="#F5F5F5">
+    <script src="/site_media/js/jquery.min.js"></script>
     {% include "common/_header.html" %}
     {% block content %}{% endblock content %}
     {% include "common/_footer.html" %}
     <script src="/site_media/js/jquery.form.js"></script>
     <script src="/site_media/js/pace.min.js"></script>
     <script src="/site_media/js/layer.js"></script>
+    <script src="/site_media/js/common.js"></script>
     {% block js %}{% endblock %}
 
     {% if not settings.DEBUG %}

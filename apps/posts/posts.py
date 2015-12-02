@@ -3,7 +3,6 @@ import datetime
 import inspect
 import logging
 
-
 import simplejson as json
 
 from django.http import HttpResponse
@@ -30,7 +29,7 @@ def index(request, id):
             return HttpResponse("/")
 
         posts = Posts.objects.seek(pk=id)
-        up = UserProfile.objects.seek(user__id=user.id)
+        up = UserProfile.objects.seek(user=posts.user)
         posts.user.header_img = up.header_img if up else ""
         if posts.type == 2:
             option_list = Options.objects.filter(posts=posts)
@@ -119,3 +118,26 @@ def new(request):
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
     return render_template(request, 'posts/new.html', context)
+
+
+def post_vote(request):
+    """POST投票按钮"""
+    user = request.user
+    try:
+        if request.POST:
+            option_id = request.POST.get('option_id')
+            option = Options.objects.seek(pk=int(option_id))
+            if not Vote.objects.filter(option=option, user_id=user.id):
+                v = Vote(
+                        option=option,
+                        user_id=user.id,
+                        add_time=datetime.datetime.now()
+                    )
+                v.save()
+                num = Vote.objects.filter(option=option).count()
+                return ajax_ok(data=num)
+            else:
+                return ajax_fail(error="您已经投过票了！")
+    except Exception, e:
+        log.error("%s:%s" % (inspect.stack()[0][3], e))
+        return ajax_fail(error="系统异常！")

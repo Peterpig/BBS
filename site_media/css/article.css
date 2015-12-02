@@ -67,7 +67,6 @@
     margin: 10px 0;
 }
 .vote-list table{
-    border: 1px solid green;
     width: 100%;
 }
 .vote-list table td:nth-child(2){

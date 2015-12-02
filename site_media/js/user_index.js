@@ -10,9 +10,15 @@
 
                     $.post('/profile/change_header_img/', {'url': url}, function(data){
                             if(data=="ok"){ 
-                                layer.msg('上传成功！',{
-                                    icon:1
-                                });
+                                // layer.msg('上传成功！', function(){
+                                //     location.reload();
+                                // });
+                                layer.msg('上传成功！', {
+                                        icon: 1,
+                                        time: 1500
+                                    }, function(){
+                                        location.reload();
+                                    }); 
                             }else{
                                 layer.msg(data);
                             }
@@ -28,7 +34,7 @@
                 title: '上传图片',
                 area: ['420px', '240px'], //宽高
                 btn: ['确定','取消'], //按钮
-                content: "<form class='fileForm' method='post' action='{{UPLOAD_IMG_API}}'><table class='fileTable'><tr><td>上传图片：</td><td><input id='smfile' name='smfile' type='file' multiple='true'></td></tr><tr><td></td><td id='img_show'><button type='button' onclick='ImageUpload()' class='button_small'>上传</button></td></tr></table></form>",
+                content: "<form class='fileForm' method='post' action='https://sm.ms/api/upload'><table class='fileTable'><tr><td>上传图片：</td><td><input id='smfile' name='smfile' type='file' multiple='true'></td></tr><tr><td></td><td id='img_show'><button type='button' onclick='ImageUpload()' class='button_small'>上传</button></td></tr></table></form>",
             });
         })
 
@@ -50,10 +56,10 @@
                 layer.tips("新旧密码不能一致！", "#password_current", {tips: [1, '#3595CC'],time: 2000});
                 return
             }
-            // if (new1.length < 6 ) {
-            //     layer.tips("密码不能少于6位！", "#password_new", {tips: [1, '#3595CC'],time: 2000});
-            //     return
-            // }
+            if (new1.length < 6 ) {
+                layer.tips("密码不能少于6位！", "#password_new", {tips: [1, '#3595CC'],time: 2000});
+                return
+            }
             if (new2 !== new1) {
                 layer.tips("两次密码不一致！", "#password_new2", {tips: [1, '#3595CC'],time: 2000});
                 return

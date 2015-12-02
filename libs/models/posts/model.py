@@ -42,7 +42,8 @@ class Vote(models.Model):
     """帖子投票"""
     option = models.ForeignKey(Options)
     user_id = models.IntegerField(u'用户id', default=0)
-
+    add_time = models.DateTimeField(auto_now_add=True)
+    
     class Meta:
         db_table = 'vote'
 

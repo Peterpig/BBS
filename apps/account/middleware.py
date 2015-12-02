@@ -30,11 +30,11 @@ class ProfilUser(object):
                 up = UserProfile(
                         user=user,
                         name=user.username,
-                        header_img=url
+                        header_img=""
                     )
                 up.save()
                 user.name = up.name
-                user.header_img = up.img
+                user.header_img = up.header_img
                 
             request._cached_user_power = user
         return request._cached_user_power

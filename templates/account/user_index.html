@@ -45,7 +45,11 @@
                         <td>
                             <span></span>
                             <a href="javascript:;" class="header_icon">
-                                <img id="header_icon" src="{{user.header_img}}" alt="" height="80px">
+                                {% if user.header_img %}
+                                    <img id="header_icon" src="{{user.header_img}}" alt="" height="80px">
+                                {% else %}
+                                    <button type="button">上传头像</button>
+                                {% endif %}
                             </a>
                         </td>
                     </tr>
