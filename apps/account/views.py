@@ -1,6 +1,7 @@
 #coding=utf-8
 import time
 import logging
+import simplejson as json
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -60,10 +61,8 @@ def register(request):
                 return HttpResponse('exact')
             user = User.objects.create_user(username, email, password2)
             return HttpResponse('ok')
-        else:
-            print "aaaa"
+
     except Exception, e:
-        print e
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
 def resetpass(request):
@@ -71,31 +70,38 @@ def resetpass(request):
     is_ok = 0   # 0未修改成功 1修改成功
     try:
         user = request.user
-        form = ChangepwdForm()
         if request.method == 'POST':
-            form = ChangepwdForm(request.POST)
-            if form.is_valid():
-                username = form.cleaned_data['username']
-                oldpass = form.cleaned_data['oldpassword']
-                pass1 = form.cleaned_data['newpassword1']
-                pass2 = form.cleaned_data['newpassword2']
-                user = authenticate(username=username, password=oldpass)
+            data = request.POST.get('data')
+            data = json.loads(data)
+            if data:
+                oldpass = data['old']
+                new1 = data['new1']
+                new2 = data['new2']
+
+                if not oldpass:
+                    return HttpResponse(u"请输入旧密码！")
+                if not new1:
+                    return HttpResponse(u"请输入新密码！")
+                if not new2:
+                    return HttpResponse(u"请再次输入新密码！")
+                if new1 != new2:
+                    return HttpResponse(u"两次密码不一致！")
+                if len(new1) < 6:
+                    return HttpResponse(u"密码不能少于6位！")
+                if oldpass == new1:
+                    return HttpResponse(u"新旧密码不能一致！")
+
+                # 认证
+                user = authenticate(username=user.username, password=oldpass)
                 if user is not None:
                     if user.is_active:
-                        if pass1 != pass2:
-                            form.add_error('newpassword2', u'两次密码不一致！')
-                        else:
-                            user.set_password(pass2)
-                            user.save()
-                            context['is_ok'] = 1
-                            logout(request)
+                        user.set_password(new2)
+                        user.save()
+                        return HttpResponse('ok')
                     else:
-                        form.add_error('username', u'用户被禁用，请联系管理员！')
+                        return HttpResponse(u'用户被禁用，请联系管理员！')
                 else:
-                    form.add_error('oldpassword', u'账号或密码错误！')
-        else:
-            form = ChangepwdForm()
-        context['form'] = form
+                    return HttpResponse(u'密码错误！')
+
     except Exception, e:
         return HttpResponse('err')
-    return render_template(request, 'account/reset_password.html', context)

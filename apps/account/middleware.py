@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 
 anonymous_urls = ['/site_media/', '/media/', '/theme_media/', '/upload_media/']
 
-login_urls = ['/t/','/new/']
+login_urls = ['/t/', '/new/', '/member/root/']
 
 class ProfilUser(object):
     def __init__(self,user):

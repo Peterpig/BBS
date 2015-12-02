@@ -13,20 +13,20 @@
             <form action="/member/user_index/">
 
                 <div class="cell cell-hover">
-                    <span class="mi-span">当前密码</span>
-                    <input type="password" class="msl" name="password_current">
+                    <span class="mi-span">原密码</span>
+                    <input type="password" class="msl" name="password_current" id="password_current">
                 </div>
                 <div class="cell cell-hover">
                     <span class="mi-span">新密码</span>
-                    <input type="password" class="msl" name="password_new">
+                    <input type="password" class="msl" name="password_new" id="password_new">
                 </div>
                 <div class="cell cell-hover">
                     <span class="mi-span">再次输入新密码</span>
-                    <input type="password" class="msl" name="password_new2">
+                    <input type="password" class="msl" name="password_new2" id="password_new2">
                 </div>
                 <div>
                     <span class="mi-span"></span>
-                    <button type="password" class="button_small">更改密码</button>
+                    <button type="button" class="button_small change_pw">更改密码</button>
                 </div>
             </form>
         </div>
@@ -52,7 +52,7 @@
                 </table>
             </form>
         </div>
-        <div class="cell cell-hover">
+<!--         <div class="cell cell-hover">
             <div class="cell-avatar">
                 <span href="/member/Vkin">
                 </span>
@@ -72,47 +72,12 @@
                     <span href="#">最后回复来自 <strong>AAA</strong></span>
                 </span>
             </div>
-        </div>
+        </div> -->
         </form>
     </div>
 
 {% endblock body %}
 
 {% block js%}
-    <script>
-        function ImageUpload(){
-            $(".fileForm").ajaxSubmit(function(d){
-                if (d.code == 'error') {
-                    layer.msg('上传失败');
-                }else if(d.code == 'success'){
-                    var data = d.data;
-                    var url = data.url;
-                    var str = '<img height="200px" src="'+ url +' "></img>';
-                    $(".header_icon img").attr('src', url);
-
-                    $.post('/profile/change_header_img/', {'url': url}, function(data){
-                            if(data=="ok"){ 
-                                layer.msg('上传成功！',{
-                                    icon:1
-                                });
-                            }else{
-                                layer.msg(data);
-                            }
-                        });
-                }
-            })
-        }
-        $(".header_icon").click(function(){
-            var text_id = $(this).attr('data-id');
-            var that = $(this);
-            layer.open({
-                type: 1,
-                title: '上传图片',
-                skin: 'layui-layer-rim', //加上边框
-                area: ['420px', '240px'], //宽高
-                btn: ['确定','取消'], //按钮
-                content: "<form class='fileForm' method='post' action='{{UPLOAD_IMG_API}}'><table class='fileTable'><tr><td>上传图片：</td><td><input id='smfile' name='smfile' type='file' multiple='true'></td></tr><tr><td></td><td id='img_show'><button type='button' onclick='ImageUpload()' class='button_small'>上传</button></td></tr></table></form>",
-            });
-        })
-    </script>
+    <script src="/site_media/js/user_index.js" type="text/javascript"></script>
 {% endblock%}

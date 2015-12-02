@@ -12,6 +12,7 @@ from django.conf import settings
 from apps.account.common import render_template, Struct
 from libs.utils.ajax import ajax_ok, ajax_fail
 
+from libs.models.account.model import UserProfile
 from libs.models.posts.model import Posts, Options, Vote
 from libs.models.catalog.model import Catalog
 
@@ -29,6 +30,8 @@ def index(request, id):
             return HttpResponse("/")
 
         posts = Posts.objects.seek(pk=id)
+        up = UserProfile.objects.seek(user__id=user.id)
+        posts.user.header_img = up.header_img if up else ""
         if posts.type == 2:
             option_list = Options.objects.filter(posts=posts)
             all_vote = Vote.objects.filter(option__in=option_list).count()
@@ -42,6 +45,8 @@ def index(request, id):
 
                 # 每个选项的百分比
                 option.present = int(float(v_count)/float(all_vote)) if all_vote else 0
+        posts.views = posts.views + 1
+        posts.save()
         context.posts = posts
         context.option_list = option_list
     except Exception, e:
@@ -82,7 +87,6 @@ def new(request):
                         type = data_dict['type'],
                         catalog__id = data_dict['tag']
                     )
-                print "posts.content ==",posts.content
                 posts.save()
             else:
                 # 投票
@@ -112,7 +116,6 @@ def new(request):
         context['UPLOAD_IMG_API'] = settings.UPLOAD_IMG_API
         context['IMG_START'] = settings.IMG_START
     except Exception, e:
-        print e
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
     return render_template(request, 'posts/new.html', context)

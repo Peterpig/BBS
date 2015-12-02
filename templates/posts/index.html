@@ -23,7 +23,7 @@
                     </span>
                 </div>
                 <div class="art-title">
-                    <a href="#"><img src="http://7xjwh5.com1.z0.glb.clouddn.com/avatar/1353745196354-64.jpg?1442925962345" alt="{{posts.user.first_name}}" title="{{posts.user.first_name}}"></a>
+                    <a href="#"><img src="{{posts.user.header_img}}" alt="{{posts.user.first_name}}" title="{{posts.user.first_name}}"></a>
 
                     <h1>{{posts.title}}</h1>
                 </div>
@@ -36,10 +36,10 @@
                 {% for option in option_list %}
                     <div class="vote-list">
                         <table>
-                            <tr>
-                                <td class="img-table">{{option.img|safe}}</td>
+                            <tr align="center">
+                                <td class="img-table JS-vote" id="{{option.id}}">{{option.img|safe}}</td>
                                 <td>{{option.content|safe}}</td>
-                                <td>{{option.v_count}} 票</td>
+                                <td><span class="button_small">{{option.v_count}}票</span><br><button type="button" class="button_small JS-vote" id="{{option.id}}">投票</button></td>
                             </tr>
                         </table>
                     </div>
