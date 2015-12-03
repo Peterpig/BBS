@@ -109,6 +109,12 @@ MIDDLEWARE_CLASSES = (
     'BBS.apps.account.middleware.AuthenticationMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.auth',
+    'django.core.context_processors.request',
+    # 'apps.account.context_processors.settings',
+)
+
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (

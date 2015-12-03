@@ -75,8 +75,7 @@
     border-right: 1px solid #AAD7FF;
 }
 .img-table{
-    width: 100px;
-    border-right: 1px solid #AAD7FF;
+    width: 200px;
 }
 .img-table img{
     width: 200px;
@@ -112,3 +111,16 @@
         margin: 20px auto;
     }
 }
+.msl{
+    width: 90%;
+    height: 100%;
+    border: none;
+    resize: none;
+    background-color: #f9f9f9;
+    outline: none;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+    font-family: 'Helvetica Neue', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+    margin: 0px;
+}   

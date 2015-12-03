@@ -4,6 +4,7 @@ import logging
 import random
 
 from apps.account.common import render_template, Struct
+from libs.utils.lib_page import Page
 
 from libs.models.posts.model import Posts
 
@@ -14,10 +15,12 @@ def index(request):
     context = Struct()
     user = request.user
     try:
-        posts_list = Posts.objects.filter(pk__gt=0)
-        context['posts_list'] = posts_list
+        page_no = request.REQUEST.get('p', 1)
+        posts_list = Posts.objects.filter(pk__gt=0).order_by('-add_time')
+        page = Page(posts_list, request, pageno=page_no, paginate_by=20, )
+        context['page'] = page
+
     except Exception, e:
-        print "e =======",e
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
     return render_template(request, 'index/index.html', context)

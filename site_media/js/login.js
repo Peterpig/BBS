@@ -1,6 +1,5 @@
 ﻿$(function(){
     var type = getQueryString('t');
-    console.log(type);
     if (type === "2") {
         ChangePanel(2);
     }else{
@@ -121,7 +120,7 @@
                                     ,shift: 1 //动画类型
                                 },
                                 function(){
-                                    location.href = '/';
+                                    location.href = '/login/';
                                     });
 
                 }

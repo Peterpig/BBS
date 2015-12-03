@@ -1,12 +1,16 @@
 #!/usr/bin/env python
 #coding=utf-8
+import urllib2
+import simplejson as json
 import logging, traceback, os
 
 from django.http import HttpResponseRedirect, Http404
 from django.conf import settings as _settings
+from django.template import RequestContext, loader, Context
 
 from libs.utils.common import Redirect
 
+from libs.models.posts.model import Posts
 from libs.models.account.model import UserProfile
 
 log = logging.getLogger(__name__)
@@ -40,6 +44,7 @@ class ProfilUser(object):
         return request._cached_user_power
 
 class AuthenticationMiddleware(object):
+
     def process_request(self, request):
         if not request.user.is_anonymous():
             # 非匿名用户增加权限
@@ -47,21 +52,18 @@ class AuthenticationMiddleware(object):
 
         path = str(request.path)
 
-        if path == '/':
-            return
-
         for obj in anonymous_urls:
             if path.startswith(obj):
                 return
-
         user = request.user
 
         #需要登录访问
         if user.is_anonymous(): #未登陆跳转首页
-            # if path == "/summer/math/" or path == "/summer/english/":
-            #     return
             if path in login_urls:
                 return HttpResponseRedirect('/login/?url=%s' % path)   #   ('%s/' % _settings.URLROOT)
+
+        # 右侧热点文章
+        self.get_top(request)
 
     def process_exception(self, request, exception):
         """
@@ -106,3 +108,31 @@ class AuthenticationMiddleware(object):
             return HttpResponse("error")
         return HttpResponseRedirect('%s/404/' % _settings.TBKT_STUDENT_ENGLISH_ROOT)
 
+
+    def get_top(self,request):
+        # 右侧今日热议
+        url = 'http://api.duoshuo.com/sites/listTopThreads.json?short_name=zhuzh&range=daily'
+        try:
+            resp = urllib2.urlopen(url).read()
+            resp = json.loads(resp)
+        except urllib2.HTTPError, error:
+            print "Cannot remove service instance!", error
+
+        top_list = []
+        try:
+            for i, r in enumerate(resp['response']):
+                if i <= 10:
+                    temp = {'id':'' ,'title':'', 'url':'','post':''}
+                    temp['id'] = r['url'].split('t')[-1].split('/')[1].split('/')[0]
+                    post = Posts.objects.seek(pk=temp['id'])
+                    header_img = UserProfile.objects.seek(user=post.user).header_img
+                    temp['post'] = post
+                    temp['header_img'] = post.header_img = header_img
+                    top_list.append(temp)
+                else:
+                    break
+        except Exception, e:
+            print "top_list err == ",e
+            top_list = []
+        request.top_list = top_list
+        print "request.top_list ==",request.top_list

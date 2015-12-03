@@ -22,13 +22,18 @@
                         <a href="#">{{posts.catalog.name}}</a>
                     </span>
                 </div>
-                <div class="art-title">
+                <div class="art-title" id="{{posts.id}}">
                     <a href="#"><img src="{{posts.user.header_img}}" alt="{{posts.user.first_name}}" title="{{posts.user.first_name}}"></a>
 
                     <h1>{{posts.title}}</h1>
                 </div>
             </header>
-
+            
+            {% if posts.type == 2 and not user.is_anonymous %}
+                <div style="float: right;">
+                    <button type="button" class="btn" style="color: #fff;" id="add_option">添加选项</button>    
+                </div>
+            {% endif %}
             <div class="art-content">
             {% if posts.type == 1%}
                 {{posts.content|safe}}
@@ -39,7 +44,11 @@
                             <tr align="center">
                                 <td class="img-table" id="{{option.id}}">{{option.img|safe}}</td>
                                 <td>{{option.content|safe}}</td>
-                                <td><span class="button_small">{{option.v_count}}票</span><br><button type="button" class="button_small JS-vote" id="{{option.id}}">投票</button></td>
+                                <td><span class="button_small">{{option.v_count}}票</span><br>
+                                {% if not user.is_anonymous %}
+                                    <!-- 登录用户才可以投票 -->
+                                    <button type="button" class="button_small JS-vote" id="{{option.id}}">投票</button></td>
+                                {% endif %}
                             </tr>
                         </table>
                     </div>
@@ -60,4 +69,12 @@
 {% endblock body %}
 
 {% block js %}
+    <script>
+     $(function(){
+        $('.ds-thread').attr('data-thread-key', {{posts.id}});
+     })
+     var option_id = "";
+     var option_dic = {};
+    </script>
+    <script src="/site_media/js/article.js" type="text/javascript" charset="utf-8"></script>
 {% endblock js %}

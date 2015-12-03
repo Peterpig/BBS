@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from libs.models.catalog.model import Catalog
+from libs.models.account.model import UserProfile
 
 class Posts(models.Model):
     """用户发表帖子类"""
@@ -13,10 +14,13 @@ class Posts(models.Model):
     views = models.IntegerField(u'点击量', default=0)
     content = models.CharField(u'内容')
     add_time = models.DateField(u'添加时间')
-    catalog = models.ForeignKey(Catalog)
+    catalog = models.ForeignKey(Catalog)    # 分类
 
     class Meta:
         db_table = 'posts'
+
+    def get_user_header(self):
+        return UserProfile.objects.seek(user=self.user).header_img
 
 class Message(models.Model):
     """帖子留言"""

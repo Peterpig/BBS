@@ -21,6 +21,7 @@ def index(request, id):
     """文章首页"""
     user = request.user
     all_vote = 0
+    option_list = ""
     try:
         context = Struct()
         try:
@@ -138,6 +139,23 @@ def post_vote(request):
                 return ajax_ok(data=num)
             else:
                 return ajax_fail(error="您已经投过票了！")
+    except Exception, e:
+        log.error("%s:%s" % (inspect.stack()[0][3], e))
+        return ajax_fail(error="系统异常！")
+
+
+def add_option(request):
+    """POST添加选项"""
+    try:
+        if request.POST:
+            data = request.POST.get('data')
+            data = json.loads(data)
+
+            Options(
+                posts_id=data['posts_id'],
+                content=data['content'],
+                img=data['url']
+                )
     except Exception, e:
         log.error("%s:%s" % (inspect.stack()[0][3], e))
         return ajax_fail(error="系统异常！")

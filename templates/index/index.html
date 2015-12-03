@@ -12,11 +12,11 @@
     </div>
 -->
     <div class="posts">
-        {% for t in posts_list %}
+        {% for t in page.object_list %}
             <div class="cell cell-hover">
                 <div class="cell-avatar">
                     <a href="/member/Vkin">
-                        <img src="http://7xjwh5.com1.z0.glb.clouddn.com/avatar/1353745196354-64.jpg?1441697091662" class="avatar" width="48px" height="48px" title="{{t.user.first_name}}">
+                        <img src="{{t.get_user_header}}" class="avatar" width="48px" height="48px" title="{{t.user.first_name}}">
                     </a>
                 </div>
                 <div class="cell-text">

@@ -112,6 +112,19 @@ img.avatar{
 button:disabled{
     background: #ccc;
 }
+
+.fileForm{
+    font-family: "Helvetica Neue","Luxi Sans","DejaVu Sans",Tahoma,"Hiragino Sans GB","Microsoft Yahei","sans-serif";
+    width: 100%;
+    height: 100%;
+}
+.fileTable{
+    height: 100%;
+    margin: 0px auto;
+}
+.fileTable .button_small{
+    float: right;
+}
 @keyframes slideInLeft {
     0% {
         transform:translate3d(-690px,0,0);

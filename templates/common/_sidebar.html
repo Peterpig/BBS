@@ -6,7 +6,8 @@
         <div class="cell">
             <table class="user">
                 <tr>
-                    <td><a href="/member/{{user.username}}/"><img src="{{user.header_img}}" alt=""></a></td>
+                    <td><a href="/member/{{user.username}}/">
+                        <img src="{% if user.header_img %}{{user.header_img}}{% else %}/site_media/img/default.jpg{% endif %}" alt="{{user.username}}"> </a></td>
                     <td width="10px"></td>
                     <td>{{ user.username }}</td>
                 </tr>
@@ -48,12 +49,14 @@
     <div class="cell fade bk-fade">
         今日热议主题：
     </div>
-    <div class="cell">
-        <a href="/member/">
-            <img src="//cdn.v2ex.co/avatar/57ea/c32c/135172_normal.png?m=1440525275" alt="">
-        </a>
-        <a href="/t/">win 上最好用的 ssh 工具</a>
-    </div>
+    {% for top in request.top_list %}
+        <div class="cell">
+            <a href="">
+                <img src="{{top.post.header_img}}" alt="">
+            </a>
+            <a href="/t/{{top.post.id}}/">{{top.post.title}}</a>
+        </div>
+    {% endfor %}
     <div class="cell">
         <a href="/member/">
             <img src="//cdn.v2ex.co/avatar/549c/5a76/135283_normal.png?m=1440576928" alt="">
@@ -83,3 +86,13 @@
         </table>
     </div>
 </div>
+
+{% block js %}
+<script type="text/javascript">
+    // $(function(){
+    //     $.get('http://api.duoshuo.com/sites/listTopThreads.json', {'short_name': 'anybfans','range':'all'}, function(data) {
+    //         alert(data)
+    //     },'json');
+    // })
+</script>
+{% endblock js %}

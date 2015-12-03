@@ -289,33 +289,3 @@ def get_options_data(data):
         retval = retval + item.__option__() + ","
 
     return retval[0:-1]
-
-def get_sms_nword(text):
-    """
-    功能说明：                获取短信格式字数
-    -----------------------------------------------
-    修改人                    修改时间
-    -----------------------------------------------
-    王晨光                    2015-3-31
-    """
-    text = unicode(text)
-    return len(text)
-
-def is_chinese_word(s, minlen=2, maxlen=5):
-    """
-    功能说明：           判断字符串(Unicode)是否为全中文
-    -----------------------------------------------
-    修改人                    修改时间
-    -----------------------------------------------
-    王晨光                    2015-5-18
-    """
-    if not s:
-        return False
-    for ch in s:
-        if u'\u4e00' <= ch <= u'\u9fff':
-            pass
-        else:
-            return False
-    if len(s) < minlen or len(s) > maxlen:
-        return False
-    return True
