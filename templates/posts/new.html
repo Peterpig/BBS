@@ -108,6 +108,8 @@
 <script src="/site_media/js/layer.js"></script>
 <script src="/site_media/js/uploadify/jquery.uploadify.min.js"></script>
 <script>
+    var json_dic;
+    var pic_list = new Array();
     $(function(){
         $("input:radio[name=p_type]").click(function() {
             var value = $(this).val();
@@ -119,25 +121,9 @@
                 $(".option-list").hide();
             }
         });
-
-        $(".btnAndInput .button_small").click(function(){
-            var text_id = $(this).attr('data-id');
-            var that = $(this);
-            layer.open({
-                type: 1,
-                title: '上传图片',
-                skin: 'layui-layer-rim', //加上边框
-                area: ['420px', '240px'], //宽高
-                btn: ['确定','取消'], //按钮
-                btn1: function(){
-                    var val = $("#imghidden").attr('imgurlstr');
-                    $("#"+text_id+"_img").val(val);
-                    $(that).attr("disabled","disabled");
-                    $(that).text("图片已上传");
-                },
-                content: "<form class='fileForm' method='post' action='{{UPLOAD_IMG_API}}'><table class='fileTable'><tr><td>上传图片：</td><td><input id='smfile' name='smfile' type='file' multiple='true'></td></tr><tr><td></td><td id='img_show'><button type='button' onclick='ImageUpload()' class='button_small'>上传</button></td></tr></table></form>",
-            });
-        })
+        layer.config({
+            extend: 'extend/layer.ext.js'
+        }); 
     });
 
 </script>

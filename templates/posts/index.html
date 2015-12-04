@@ -42,7 +42,7 @@
                     <div class="vote-list">
                         <table>
                             <tr align="center">
-                                <td class="img-table" id="{{option.id}}">{{option.img|safe}}</td>
+                                <td class="img-table" id="{{option.id}}"><img src="{{option.img|safe}}" alt=""></td>
                                 <td>{{option.content|safe}}</td>
                                 <td><span class="button_small">{{option.v_count}}票</span><br>
                                 {% if not user.is_anonymous %}

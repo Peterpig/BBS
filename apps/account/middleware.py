@@ -132,7 +132,5 @@ class AuthenticationMiddleware(object):
                 else:
                     break
         except Exception, e:
-            print "top_list err == ",e
             top_list = []
         request.top_list = top_list
-        print "request.top_list ==",request.top_list

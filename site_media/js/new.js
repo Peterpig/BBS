@@ -59,18 +59,71 @@ function add_option() {
 
 }
 
-function ImageUpload(){
+function ImageUpload(text_id){
+    $("[data-id='"+text_id+"']").attr('disabled','disabled');
     $(".fileForm").ajaxSubmit(function(d){
         if (d.code == 'error') {
             layer.msg('上传失败');
         }else if(d.code == 'success'){
             var data = d.data;
             var url = data.url;
-            var str = '<img height="200px" src="'+ url +' "></img>';
-            $("#imghidden").attr('imgurlstr', str);
+
+            // 隐藏图片地址
+            $("#"+text_id+"_img").attr('value',url);
+
+            // 关闭弹框
+            layer.closeAll();
+            $("[data-id='"+text_id+"']").removeAttr('disabled')
+
+            // 转换图片ID
+            var num = text_id_to_num(text_id);
+            pic_list.push({'alt':'', 'pid':parseInt(num), 'src':url, 'thumb':url});
+
+            // 删除原来的button，并且重新追加一个button 用来显示图册
+            var strp = "ViewPic('"+ num +"')";
+            $("[data-id='"+text_id+"']").remove()
+            var html_str = "<button class='btn' onclick="+strp+">图片已上传,点击查看</button>";
+            $("#"+text_id).after(html_str);
+
             layer.msg('上传成功！',{
                 icon:1
             });
         }
     })
+}
+function ViewPic(num){
+    json_dic = {
+                "title": "图片预览", //相册标题
+                "id": 1, //相册id
+                "start": parseInt(num), //初始显示的图片序号，默认0
+                "data": pic_list
+            }
+    layer.photos({
+        photos: json_dic,
+    });
+}
+
+$(function(){
+    $(".btnAndInput .button_small").click(function(){
+        var text_id = $(this).attr('data-id');
+        var that = $(this);
+        layer.open({
+            type: 1,
+            title: '上传图片',
+            skin: 'layui-layer-rim', //加上边框
+            area: ['420px', '240px'], //宽高
+            shade: 0.6,
+            moveType: 1,
+            content: "<form class='fileForm' method='post' action='https://sm.ms/api/upload'><table class='fileTable'><tr><td>上传图片：</td><td><input id='smfile' name='smfile' type='file' multiple='true'></td></tr><tr><td></td><td id='img_show'><button type='button' onclick=ImageUpload('"+text_id+"') class='button_small'>上传</button></td></tr></table></form>",
+        });
+    })
+})
+
+function text_id_to_num(text_id){
+    var num = text_id.slice(-1);
+    if (num === "n" ) {
+        //启示值为0
+        num = 0
+    }
+    return num
 }

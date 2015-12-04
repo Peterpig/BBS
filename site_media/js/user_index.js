@@ -33,7 +33,8 @@
                 type: 1,
                 title: '上传图片',
                 area: ['420px', '240px'], //宽高
-                btn: ['确定','取消'], //按钮
+                shade: 0.6,
+                moveType: 1,
                 content: "<form class='fileForm' method='post' action='https://sm.ms/api/upload'><table class='fileTable'><tr><td>上传图片：</td><td><input id='smfile' name='smfile' type='file' multiple='true'></td></tr><tr><td></td><td id='img_show'><button type='button' onclick='ImageUpload()' class='button_small'>上传</button></td></tr></table></form>",
             });
         })
