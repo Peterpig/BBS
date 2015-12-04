@@ -151,11 +151,13 @@ def add_option(request):
             data = request.POST.get('data')
             data = json.loads(data)
 
-            Options(
-                posts_id=data['posts_id'],
-                content=data['content'],
-                img=data['url']
-                )
+            option = Options(
+                        posts_id=data['post_id'],
+                        content=data['content'],
+                        img=data['url']
+                    )
+            option.save()
+            return ajax_ok(data='ok')
     except Exception, e:
         log.error("%s:%s" % (inspect.stack()[0][3], e))
         return ajax_fail(error="系统异常！")

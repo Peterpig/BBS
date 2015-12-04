@@ -21,7 +21,7 @@ function ImageUpload(){
             var str = '<img height="200px" src="'+ url +' "></img>';
             $("#upload_"+option_id).html(str);
             layer.msg('上传成功！', {icon: 1,time: 1500})
-
+            layer.closeAll();
             // $.post('/profile/change_header_img/', {'url': url}, function(data){
             //         if(data=="ok"){ 
             //             // layer.msg('上传成功！', function(){
@@ -62,7 +62,7 @@ function OptionPost(id, post_id){
     var url = $("#upload_"+id+" img").attr("src");
     var content = $("#utext_"+id).val();
 
-    if ((url !=="" && typeof url !=="undefined")|| content !== "") {
+    if (content !== "") {
         if (typeof url ==="undefined") {
             url = ""
         }
@@ -70,10 +70,23 @@ function OptionPost(id, post_id){
         var data = {'url':url, 'content':content, 'post_id':post_id};
 
         $.post('/add_option/', {'data':JSON.stringify(data)}, function(d) {
-            alert(d);
+            if (d.response == 'ok') {
+                layer.msg('添加选项成功！', {
+                    icon: 1,
+                    time: 2000
+                }, function(){
+                    alert(sss);
+                    location.reload();
+                }); 
+            }else{
+                layer.msg(d, {
+                    icon: 1,
+                    time: 2000
+                }); 
+            }
         }, 'json');
     }else{
-        layer.msg('请填写要添加选项的图片或内容！', {time: 2500});
+        layer.msg('请填写要添加选项的内容！', {time: 2500});
         return
     }
 }
