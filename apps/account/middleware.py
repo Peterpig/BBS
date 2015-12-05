@@ -128,7 +128,6 @@ class AuthenticationMiddleware(object):
         try:
             for i, r in enumerate(resp['response']):
                 if i <= 10:
-                    print "r == ",r
                     temp = {'id':'' ,'title':'', 'url':'','post':''}
                     temp['id'] = r['url'].split('t')[-1].split('/')[1].split('/')[0]
                     post = Posts.objects.seek(pk=temp['id'])

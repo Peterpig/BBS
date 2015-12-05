@@ -8,6 +8,7 @@ from django.conf import settings
 urlpatterns = patterns('',
     (r'', include('apps.index.urls')),
     (r'', include('apps.posts.urls')),
+    (r'^search/', 'apps.index.index.search'),
 )
 
 

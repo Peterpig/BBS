@@ -17,7 +17,7 @@
                 <span><a href="#">{{user.username}}</a></span>
                 <span><img src="{{user.header_img}}" alt=""></span>
             </div>
-            <div class="user-save">
+            <!--<div class="user-save">
                 <a href="">
                     <span>33</span>
                     <span>粉丝</span>
@@ -30,13 +30,13 @@
                     <span>1</span>
                     <span>xxx</span>
                 </a>
-            </div>
+            </div>-->
             <div class="catalog-list">
                 <ul>
                     {% for c in catalog_list %}
                         <li>
                             <span class="li-num" style="color:{{c.rgb}}">{{forloop.counter}}</span>
-                            <a class="li-catalog" href="#">
+                            <a class="li-catalog" href="/?catalog={{c.id}}">
                                 <span style="color:{{c.rgb}}">{{c.name}}&nbsp;</span>
                             </a>
                         </li>

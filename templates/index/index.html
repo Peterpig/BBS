@@ -12,31 +12,44 @@
     </div>
 -->
     <div class="posts">
-        {% for t in page.object_list %}
-            <div class="cell cell-hover">
-                <div class="cell-avatar">
-                    <a href="/t/{{t.id}}/">
-                        <img src="{{t.get_user_header}}" class="avatar" width="48px" height="48px" title="{{t.user.username}}">
-                    </a>
-                </div>
-                <div class="cell-text">
-                    <span class="posts-title">
+        {% if page.object_list %}
+            {% for t in page.object_list %}
+                <div class="cell cell-hover">
+                    <div class="cell-avatar">
                         <a href="/t/{{t.id}}/">
-                            {{t.title}}
+                            <img src="{{t.get_user_header}}" class="avatar" width="48px" height="48px" title="{{t.user.username}}">
                         </a>
-                    </span>
-                    <div class="height5"></div>
-                    <span class="bottom">
-                        <span class="node" href="#"><i class="fa fa-tags gray"></i> {{t.catalog.name}}</span> &nbsp;•&nbsp;
-                        <span class="node"><i class="fa fa-heart"></i> {{t.user.username}}</span>
-                        &nbsp;•&nbsp;
-                        <span class="node"><i class="fa fa-comment"></i>{% if t.type == 2 %} 投票{% else %} 评论{% endif %}</span>
-                    </span>
+                    </div>
+                    <div class="cell-text">
+                        <span class="posts-title">
+                            <a href="/t/{{t.id}}/">
+                                {{t.title}}
+                            </a>
+                        </span>
+                        <div class="height5"></div>
+                        <span class="bottom">
+                            <a class="node" href="/?catalog={{t.catalog.id}}"><i class="fa fa-tags gray"></i> {{t.catalog.name}}</a> &nbsp;•&nbsp;
+                            <span class="node"><i class="fa fa-heart"></i> {{t.user.username}}</span>
+                            &nbsp;•&nbsp;
+                            <span class="node"><i class="fa fa-comment"></i>{% if t.type == 2 %} 投票{% else %} 评论{% endif %}</span>
+                        </span>
+                    </div>
+                    <!--<div class="cell-num">
+                        <span>16</span>
+                    </div>-->
                 </div>
-                <!--<div class="cell-num">
-                    <span>16</span>
-                </div>-->
-            </div>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            <div class="cell cell-hover">
+                    <div class="cell-text">
+                        <span class="posts-title">
+                            <a href="/">
+                                暂无内容,看看其他内容吧!
+                            </a>
+                        </span>
+                    </div>
+                </div>
+        {% endif %}
+
     </div>
 {% endblock body %}
