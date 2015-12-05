@@ -49,7 +49,7 @@
     <div class="cell fade bk-fade">
         今日热议主题：
     </div>
-    {% for top in request.top_list %}
+    {% for top in user.top_list %}
         <div class="cell">
             <a href="">
                 <img src="{{top.post.header_img}}" alt="">
@@ -57,12 +57,6 @@
             <a href="/t/{{top.post.id}}/">{{top.post.title}}</a>
         </div>
     {% endfor %}
-    <div class="cell">
-        <a href="/member/">
-            <img src="//cdn.v2ex.co/avatar/549c/5a76/135283_normal.png?m=1440576928" alt="">
-        </a>
-        <a href="/t/">阿里云升级云盾, 误删用户数据，我也是醉了醉了醉了醉了</a>
-    </div>
 </div>
 
 <div class="box">
@@ -73,16 +67,16 @@
         <table>
             <tr>
                 <td align="right">注册会员&nbsp;&nbsp;</td>
-                <td>136191</td>
+                <td>{{request.all_user}}</td>
             </tr>
             <tr>
                 <td align="right">主题&nbsp;&nbsp;</td>
-                <td>214725</td>
+                <td>{{request.all_posts}}</td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td align="right">回复&nbsp;&nbsp;</td>
                 <td>2381010</td>
-            </tr>
+            </tr> -->
         </table>
     </div>
 </div>

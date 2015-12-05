@@ -41,6 +41,31 @@ li .li-num{
     border-radius: 10px;
 }
 
+.top-list{
+}
+.top-list .top-title{
+    display: block;
+    padding: 5px;
+    border-bottom: 1px solid #eee
+}
+
 .top-list li{
     list-style: none;
+    padding: 5px;
+    display: block;
+}
+
+.top-list a{
+    display: inline-block;
+}
+
+.top-lsit a:hover{
+    color: #34A853;
+    background-color: yellow;
+}
+
+.top-list .top-time{
+    display: inline-block;
+    float: right;
+    color: #ccc;
 }

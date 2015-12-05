@@ -15,8 +15,8 @@
         {% for t in page.object_list %}
             <div class="cell cell-hover">
                 <div class="cell-avatar">
-                    <a href="/member/Vkin">
-                        <img src="{{t.get_user_header}}" class="avatar" width="48px" height="48px" title="{{t.user.first_name}}">
+                    <a href="/t/{{t.id}}/">
+                        <img src="{{t.get_user_header}}" class="avatar" width="48px" height="48px" title="{{t.user.username}}">
                     </a>
                 </div>
                 <div class="cell-text">
@@ -27,16 +27,15 @@
                     </span>
                     <div class="height5"></div>
                     <span class="bottom">
-                        <i class="fa fa-tags gray"></i>
-                        <a class="node" href="#">{{t.catalog.name}}</a> &nbsp;•&nbsp;
-                        <a href="#">{{t.user.first_name}}</a>
+                        <span class="node" href="#"><i class="fa fa-tags gray"></i> {{t.catalog.name}}</span> &nbsp;•&nbsp;
+                        <span class="node"><i class="fa fa-heart"></i> {{t.user.username}}</span>
                         &nbsp;•&nbsp;
-                        <span href="#">最后回复来自 <strong>AAA</strong></span>
+                        <span class="node"><i class="fa fa-comment"></i>{% if t.type == 2 %} 投票{% else %} 评论{% endif %}</span>
                     </span>
                 </div>
-                <div class="cell-num">
+                <!--<div class="cell-num">
                     <span>16</span>
-                </div>
+                </div>-->
             </div>
         {% endfor %}
     </div>

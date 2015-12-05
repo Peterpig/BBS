@@ -23,15 +23,15 @@
                     </span>
                 </div>
                 <div class="art-title" id="{{posts.id}}">
-                    <a href="#"><img src="{{posts.user.header_img}}" alt="{{posts.user.first_name}}" title="{{posts.user.first_name}}"></a>
+                    <a href="#"><img src="{{posts.get_user_header}}" alt="{{posts.user.first_name}}" title="{{posts.user.first_name}}"></a>
 
                     <h1>{{posts.title}}</h1>
                 </div>
             </header>
-            
+
             {% if posts.type == 2 and not user.is_anonymous %}
                 <div style="float: right;">
-                    <button type="button" class="btn" style="color: #fff;" id="add_option">添加选项</button>    
+                    <button type="button" class="btn" style="color: #fff;" id="add_option">添加选项</button>
                 </div>
             {% endif %}
             <div class="art-content">
