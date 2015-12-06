@@ -47,8 +47,13 @@
                                 <td><span class="button_small">{{option.v_count}}票</span><br>
                                 {% if not user.is_anonymous %}
                                     <!-- 登录用户才可以投票 -->
-                                    <button type="button" class="button_small JS-vote" id="{{option.id}}">投票</button></td>
+                                    <button type="button" class="button_small JS-vote" id="{{option.id}}">投票</button><br>
+
+                                    {% if user.is_superuser %}
+                                        <button type="button" class="button_small button_danger JS-del-vote" id="{{option.id}}">删除</button></td>
+                                    {% endif %}
                                 {% endif %}
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -61,6 +66,7 @@
             </footer>
         </article>
     </div>
+<div class="ds-thread" data-thread-key="{{posts.id}}" data-title="{{posts.title}}" ></div>
 
     <div class="commit">
         {% duoshuo_comments %}

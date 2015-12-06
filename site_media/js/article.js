@@ -70,7 +70,6 @@ function OptionPost(id, post_id){
         var data = {'url':url, 'content':content, 'post_id':post_id};
 
         $.post('/add_option/', {'data':JSON.stringify(data)}, function(d) {
-            alert(d.response);
             if (d.response == 'ok') {
                 layer.msg('添加选项成功！', {
                     icon: 1,

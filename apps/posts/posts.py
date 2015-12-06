@@ -144,6 +144,20 @@ def post_vote(request):
         return ajax_fail(error="系统异常！")
 
 
+def post_vote_del(request):
+    """POST投票按钮"""
+    user = request.user
+    try:
+        if request.POST:
+            option_id = request.POST.get('option_id')
+            option = Options.objects.seek(pk=int(option_id)).delete()
+            Vote.objects.filter(option__id=option_id).delete()
+            return ajax_ok()
+    except Exception, e:
+        log.error("%s:%s" % (inspect.stack()[0][3], e))
+        return ajax_fail(error="系统异常！")
+
+
 def add_option(request):
     """POST添加选项"""
     try:
