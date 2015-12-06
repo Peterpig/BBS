@@ -25,15 +25,15 @@ class Posts(models.Model):
         else:
             return '/site_media/img/default.jpg'
 
-class Message(models.Model):
-    """帖子留言"""
-    user_id = models.IntegerField(u'用户id', default=0)
-    posts = models.ForeignKey(Posts)
-    content = models.CharField(u'内容')
-    message_to = models.IntegerField(u'@的人')
+# class Message(models.Model):
+#     """帖子留言"""
+#     user_id = models.IntegerField(u'用户id', default=0)
+#     posts = models.ForeignKey(Posts)
+#     content = models.CharField(u'内容')
+#     message_to = models.IntegerField(u'@的人')
 
-    class Meta:
-        db_table = 'message'
+#     class Meta:
+#         db_table = 'message'
 
 
 class Options(models.Model):

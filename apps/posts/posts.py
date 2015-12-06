@@ -77,17 +77,24 @@ def new(request):
                 return ajax_fail('请选择一个分类！')
 
             type = int(data_dict['type'])
+
+            print "data_dict['tag'] == ",data_dict['tag']
+            print "data_dict['content'] == ",data_dict['content']
             if type == 1:
-                # 评论
-                posts = Posts(
-                        title = data_dict['title'],
-                        user = user,
-                        content = data_dict['content'],
-                        add_time = datetime.datetime.now(),
-                        type = data_dict['type'],
-                        catalog__id = data_dict['tag']
-                    )
-                posts.save()
+
+                if not Posts.objects.filter(title=data_dict['title']):
+                    # 评论
+                    p = Posts(
+                            title = data_dict['title'],
+                            user = user,
+                            content = data_dict['content'],
+                            add_time = datetime.datetime.now(),
+                            type = data_dict['type'],
+                            catalog_id = data_dict['tag']
+                        )
+                    p.save()
+                else:
+                    return ajax_fail(error="文章已存在,请换个标题试试!")
             else:
                 # 投票
                 p = Posts(
@@ -145,13 +152,28 @@ def post_vote(request):
 
 
 def post_vote_del(request):
-    """POST投票按钮"""
+    """POST投票删除按钮"""
     user = request.user
     try:
         if request.POST:
             option_id = request.POST.get('option_id')
             option = Options.objects.seek(pk=int(option_id)).delete()
             Vote.objects.filter(option__id=option_id).delete()
+            return ajax_ok()
+    except Exception, e:
+        log.error("%s:%s" % (inspect.stack()[0][3], e))
+        return ajax_fail(error="系统异常！")
+
+def post_posts_del(request):
+    """POST投票按钮"""
+    user = request.user
+    try:
+        if request.POST:
+            posts_id = request.POST.get('option_id')
+            print "posts_id ==",posts_id
+            Vote.objects.filter(option__posts__id=posts_id).delete()
+            Options.objects.filter(posts__id=posts_id).delete()
+            Posts.objects.filter(pk=posts_id).delete()
             return ajax_ok()
     except Exception, e:
         log.error("%s:%s" % (inspect.stack()[0][3], e))

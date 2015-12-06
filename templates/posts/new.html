@@ -49,7 +49,6 @@
                 </div>
             </header>
 
-            <textarea class="art-content" name="content" id="content" style="display: none;"></textarea>
 
 
             <div class="option-list">
@@ -119,11 +118,32 @@
             }else{
                 $(".mce-panel").show();
                 $(".option-list").hide();
+                var text_html = '<textarea class="art-content" name="content" id="content"></textarea>'
+                $(".art-header").after(text_html);
+                tinymce.init({
+                    selector: "textarea#content",
+                    //width: 800,
+                    height: 300,
+                    forced_root_block: false,
+                    language : "zh_CN",
+                    setup: function (editor) {
+                        editor.on('change', function () {
+                            tinymce.triggerSave();
+                        });
+                    },
+                    plugins: [
+                        "advlist autolink lists link image charmap print preview anchor",
+                        "searchreplace visualblocks code fullscreen",
+                        "insertdatetime table contextmenu paste"
+                    ],
+                    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter" +
+                    " alignright alignjustify | bullist numlist outdent indent | preview link image"
+                });
             }
         });
         layer.config({
             extend: 'extend/layer.ext.js'
-        }); 
+        });
     });
 
 </script>

@@ -34,9 +34,11 @@
                             <span class="node"><i class="fa fa-comment"></i>{% if t.type == 2 %} 投票{% else %} 评论{% endif %}</span>
                         </span>
                     </div>
-                    <!--<div class="cell-num">
-                        <span>16</span>
-                    </div>-->
+                    <!--
+                    <div class="cell-num">
+                        <span>{{t.views}}</span>
+                    </div>
+                    -->
                 </div>
             {% endfor %}
         {% else %}
@@ -50,6 +52,6 @@
                     </div>
                 </div>
         {% endif %}
-
     </div>
+{{page.page_ajax_url|safe}}
 {% endblock body %}
