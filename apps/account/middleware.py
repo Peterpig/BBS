@@ -131,14 +131,15 @@ class AuthenticationMiddleware(object):
                     temp = {'id':'' ,'title':'', 'url':'','post':''}
                     temp['id'] = r['url'].split('t')[-1].split('/')[1].split('/')[0]
                     post = Posts.objects.seek(pk=temp['id'])
-                    header_img = post.get_user_header()
+                    header_img = post.get_user_header() if post else ''
                     temp['post'] = post
                     temp['header_img'] = post.header_img = header_img
                     top_list.append(temp)
                 else:
                     break
         except Exception, e:
-            top_list = []
+            pass
+
         user.top_list = top_list
 
 
