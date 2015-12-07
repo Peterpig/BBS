@@ -125,6 +125,9 @@ button:disabled{
 .fileTable .button_small{
     float: right;
 }
+.button_danger{
+    background-color: #c9302c;
+}
 @keyframes slideInLeft {
     0% {
         transform:translate3d(-690px,0,0);

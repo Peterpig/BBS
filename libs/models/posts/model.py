@@ -20,17 +20,20 @@ class Posts(models.Model):
         db_table = 'posts'
 
     def get_user_header(self):
-        return UserProfile.objects.seek(user=self.user).header_img
+        if UserProfile.objects.seek(user=self.user):
+            return UserProfile.objects.seek(user=self.user).header_img
+        else:
+            return '/site_media/img/default.jpg'
 
-class Message(models.Model):
-    """帖子留言"""
-    user_id = models.IntegerField(u'用户id', default=0)
-    posts = models.ForeignKey(Posts)
-    content = models.CharField(u'内容')
-    message_to = models.IntegerField(u'@的人')
+# class Message(models.Model):
+#     """帖子留言"""
+#     user_id = models.IntegerField(u'用户id', default=0)
+#     posts = models.ForeignKey(Posts)
+#     content = models.CharField(u'内容')
+#     message_to = models.IntegerField(u'@的人')
 
-    class Meta:
-        db_table = 'message'
+#     class Meta:
+#         db_table = 'message'
 
 
 class Options(models.Model):
@@ -47,9 +50,12 @@ class Vote(models.Model):
     option = models.ForeignKey(Options)
     user_id = models.IntegerField(u'用户id', default=0)
     add_time = models.DateTimeField(auto_now_add=True)
-    
+
     class Meta:
         db_table = 'vote'
+
+    def get_posts(self):
+        return self.option.posts
 
 # class Catalog(models.Model):
 #     """文章分类"""

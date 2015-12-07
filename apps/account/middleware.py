@@ -4,6 +4,8 @@ import urllib2
 import simplejson as json
 import logging, traceback, os
 
+from django.core.cache import cache
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, Http404
 from django.conf import settings as _settings
 from django.template import RequestContext, loader, Context
@@ -22,7 +24,7 @@ login_urls = ['/t/', '/new/', '/member/root/']
 class ProfilUser(object):
     def __init__(self,user):
         self.user = user
-        
+
     def __get__(self, request, obj_type=None):
         if not hasattr(request, '_cached_user_power'):
             user = self.user
@@ -34,12 +36,12 @@ class ProfilUser(object):
                 up = UserProfile(
                         user=user,
                         name=user.username,
-                        header_img=""
+                        header_img="/site_media/img/default.jpg"
                     )
                 up.save()
                 user.name = up.name
                 user.header_img = up.header_img
-                
+
             request._cached_user_power = user
         return request._cached_user_power
 
@@ -64,6 +66,9 @@ class AuthenticationMiddleware(object):
 
         # 右侧热点文章
         self.get_top(request)
+
+        # 右侧社区详情
+        self.get_bbs_detail(request)
 
     def process_exception(self, request, exception):
         """
@@ -110,6 +115,7 @@ class AuthenticationMiddleware(object):
 
 
     def get_top(self,request):
+        user = request.user
         # 右侧今日热议
         url = 'http://api.duoshuo.com/sites/listTopThreads.json?short_name=zhuzh&range=daily'
         try:
@@ -125,12 +131,34 @@ class AuthenticationMiddleware(object):
                     temp = {'id':'' ,'title':'', 'url':'','post':''}
                     temp['id'] = r['url'].split('t')[-1].split('/')[1].split('/')[0]
                     post = Posts.objects.seek(pk=temp['id'])
-                    header_img = UserProfile.objects.seek(user=post.user).header_img
+                    header_img = post.get_user_header() if post else ''
                     temp['post'] = post
                     temp['header_img'] = post.header_img = header_img
                     top_list.append(temp)
                 else:
                     break
         except Exception, e:
-            top_list = []
-        request.top_list = top_list
+            pass
+
+        user.top_list = top_list
+
+
+    def get_bbs_detail(self, request):
+        # 右侧社区详情
+
+        if cache.get('all_user'):
+            all_user = cache.get('all_user')
+        else:
+            all_user = User.objects.filter(pk__gt=0).count()
+            cache.set('all_user', all_user, 60*60*6)
+
+        if cache.get('all_posts'):
+            all_posts = cache.get('all_posts')
+        else:
+            all_posts = Posts.objects.filter(pk__gt=0).count()
+            cache.set('all_posts', all_posts, 60*60*6)
+
+        request.all_user = all_user if all_user else ""
+        request.all_posts = all_posts if all_posts else ""
+
+

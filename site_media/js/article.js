@@ -23,7 +23,7 @@ function ImageUpload(){
             layer.msg('上传成功！', {icon: 1,time: 1500})
             layer.closeAll();
             // $.post('/profile/change_header_img/', {'url': url}, function(data){
-            //         if(data=="ok"){ 
+            //         if(data=="ok"){
             //             // layer.msg('上传成功！', function(){
             //             //     location.reload();
             //             // });
@@ -32,7 +32,7 @@ function ImageUpload(){
             //                     time: 1500
             //                 }, function(){
             //                     location.reload();
-            //                 }); 
+            //                 });
             //         }else{
             //             layer.msg(data);
             //         }
@@ -75,14 +75,13 @@ function OptionPost(id, post_id){
                     icon: 1,
                     time: 2000
                 }, function(){
-                    alert(sss);
                     location.reload();
-                }); 
+                });
             }else{
                 layer.msg(d, {
                     icon: 1,
                     time: 2000
-                }); 
+                });
             }
         }, 'json');
     }else{

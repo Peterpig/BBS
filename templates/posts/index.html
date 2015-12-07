@@ -23,17 +23,22 @@
                     </span>
                 </div>
                 <div class="art-title" id="{{posts.id}}">
-                    <a href="#"><img src="{{posts.user.header_img}}" alt="{{posts.user.first_name}}" title="{{posts.user.first_name}}"></a>
+                    <a href="#"><img src="{{posts.get_user_header}}" alt="{{posts.user.first_name}}" title="{{posts.user.first_name}}"></a>
 
                     <h1>{{posts.title}}</h1>
+                    {% if not user.is_anonymous %}
+                        <div style="float: right;margin-top:10px;">
+                            {% if posts.type == 2 %}
+                            <button type="button" class="btn" style="color: #fff;" id="add_option">添加选项</button>&nbsp;&nbsp;&nbsp;
+                            {% endif %}
+                            {% if user.is_superuser %}
+                                <span style="float:right;"><button type="button" class="btn button_danger JS-del-posts" data-id={{posts.id}}>删除</button></span>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+
                 </div>
             </header>
-            
-            {% if posts.type == 2 and not user.is_anonymous %}
-                <div style="float: right;">
-                    <button type="button" class="btn" style="color: #fff;" id="add_option">添加选项</button>    
-                </div>
-            {% endif %}
             <div class="art-content">
             {% if posts.type == 1%}
                 {{posts.content|safe}}
@@ -47,8 +52,13 @@
                                 <td><span class="button_small">{{option.v_count}}票</span><br>
                                 {% if not user.is_anonymous %}
                                     <!-- 登录用户才可以投票 -->
-                                    <button type="button" class="button_small JS-vote" id="{{option.id}}">投票</button></td>
+                                    <button type="button" class="button_small JS-vote" id="{{option.id}}">投票</button><br>
+
+                                    {% if user.is_superuser %}
+                                        <button type="button" class="button_small button_danger JS-del-vote" id="{{option.id}}">删除</button></td>
+                                    {% endif %}
                                 {% endif %}
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -72,6 +82,8 @@
     <script>
      $(function(){
         $('.ds-thread').attr('data-thread-key', {{posts.id}});
+        $('.ds-thread').attr('data-title', '{{posts.title}}');
+        $('.ds-thread').attr('data-url', '/t/{{posts.id}}');
      })
      var option_id = "";
      var option_dic = {};

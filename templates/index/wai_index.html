@@ -1,4 +1,5 @@
 {% extends "common/base.html" %}
+{% block title %}首页{% endblock %}
 {% block css %}
 <link rel="stylesheet" type="text/css" href="/site_media/css/wai_index.css">
 <link rel="stylesheet" href="/site_media/bootstrap/css/bootstrap.min.css">
@@ -14,9 +15,9 @@
         <div class="col-md-3">
             <div class="user_left_info">
                 <span><a href="#">{{user.username}}</a></span>
-                <span><img src="//cdn.v2ex.co/gravatar/1c54d8bb7c3e6ed3753ffcafa0ac4865?s=48&d=retro" alt=""></span>
+                <span><img src="{{user.header_img}}" alt=""></span>
             </div>
-            <div class="user-save">
+            <!--<div class="user-save">
                 <a href="">
                     <span>33</span>
                     <span>粉丝</span>
@@ -29,13 +30,13 @@
                     <span>1</span>
                     <span>xxx</span>
                 </a>
-            </div>
+            </div>-->
             <div class="catalog-list">
                 <ul>
                     {% for c in catalog_list %}
                         <li>
                             <span class="li-num" style="color:{{c.rgb}}">{{forloop.counter}}</span>
-                            <a class="li-catalog" href="#">
+                            <a class="li-catalog" href="/?catalog={{c.id}}">
                                 <span style="color:{{c.rgb}}">{{c.name}}&nbsp;</span>
                             </a>
                         </li>
@@ -50,21 +51,86 @@
 
         <div class="col-md-3">
             <div class="top-list">
-                <span>A、最多关注的榜单</span>
+                <span class="top-title">A、最多关注的榜单</span>
+                {% for view in top_view %}
                 <ul>
-                    <li></li>
+                    <li>
+                        <a href="/t/{{view.id}}">
+                            <i>> </i>{{view.title}}
+                        </a>
+                        <span class="top-time">{{view.add_time|date:"Y-m-d h:m"}}</span>
+                    </li>
                 </ul>
+                {% endfor %}
             </div>
             <div class="top-list">
-                <span>B、最新发布的榜单</span>
+                <span class="top-title">B、最新发布的榜单</span>
+                {% for new in top_new %}
+                <ul>
+                    <li>
+                        <a href="/t/{{new.id}}">
+                            <i>> </i>{{new.title}}
+                        </a>
+                        <span class="top-time">{{new.add_time|date:"Y-m-d h:m"}}</span>
+                    </li>
+                </ul>
+                {% endfor %}
             </div>
             <div class="top-list">
-                <span>C、最后投票的榜单</span>
+                <span class="top-title">C、最后投票的榜单</span>
+                {% for vote in top_vote %}
+                <ul>
+                    <li>
+                        <a href="/t/{{vote.get_posts.id}}">
+                            <i>> </i>{{vote.get_posts.title}}
+                        </a>
+                        <span class="top-time">{{vote.get_posts.add_time|date:"Y-m-d h:m"}}</span>
+                    </li>
+                </ul>
+                {% endfor %}
             </div>
         </div>
 
         <div class="col-md-3">
-            s4
+            <div class="top-list">
+                <span class="top-title">A、最多关注的话题</span>
+                {% for view in top_view_2 %}
+                <ul>
+                    <li>
+                        <a href="/t/{{view.id}}">
+                            <i>> </i>{{view.title}}
+                        </a>
+                        <span class="top-time">{{view.add_time|date:"Y-m-d h:m"}}</span>
+                    </li>
+                </ul>
+                {% endfor %}
+            </div>
+            <div class="top-list">
+                <span class="top-title">B、最新发布的话题</span>
+                {% for new in top_new_2 %}
+                <ul>
+                    <li>
+                        <a href="/t/{{new.id}}">
+                            <i>> </i>{{new.title}}
+                        </a>
+                        <span class="top-time">{{new.add_time|date:"Y-m-d h:m"}}</span>
+                    </li>
+                </ul>
+                {% endfor %}
+            </div>
+            <div class="top-list">
+                <span class="top-title">C、上升最快的话题</span>
+                {% for post in top_top_2 %}
+                <ul>
+                    <li>
+                        <a href="/t/{{post.post.id}}">
+                            <i>> </i>{{post.post.title}}
+                        </a>
+                        <span class="top-time">{{post.post.add_time|date:"Y-m-d h:m"}}</span>
+                    </li>
+                </ul>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock content %}
