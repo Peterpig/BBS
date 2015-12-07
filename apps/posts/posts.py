@@ -50,7 +50,6 @@ def index(request, id):
         context.posts = posts
         context.option_list = option_list
     except Exception, e:
-        print e
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
     return render_template(request, 'posts/index.html', context)
