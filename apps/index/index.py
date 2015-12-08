@@ -130,4 +130,3 @@ def search(request):
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
     return render_template(request, 'index/index.html', context)
-
