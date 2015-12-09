@@ -29,10 +29,10 @@
                     {% if not user.is_anonymous %}
                         <div style="float: right;margin-top:10px;">
                             {% if posts.type == 2 %}
-                            <button type="button" class="btn" style="color: #fff;" id="add_option">添加选项</button>&nbsp;&nbsp;&nbsp;
+                            <button type="button" class="btn button_danger" style="color: #fff;" id="add_option">添加选项</button>&nbsp;&nbsp;&nbsp;
                             {% endif %}
                             {% if user.is_superuser %}
-                                <span style="float:right;"><button type="button" class="btn button_danger JS-del-posts" data-id={{posts.id}}>删除</button></span>
+                                <span style="float:right;"><button type="button" class="btn JS-del-posts" data-id={{posts.id}}>删除</button></span>
                             {% endif %}
                         </div>
                     {% endif %}
@@ -71,7 +71,6 @@
             </footer>
         </article>
     </div>
-
     <div class="commit">
         {% duoshuo_comments %}
     </div>

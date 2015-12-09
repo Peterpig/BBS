@@ -119,7 +119,6 @@ def new(request):
         context['UPLOAD_IMG_API'] = settings.UPLOAD_IMG_API
         context['IMG_START'] = settings.IMG_START
     except Exception, e:
-        print "E == ",e
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
     return render_template(request, 'posts/new.html', context)
