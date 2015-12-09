@@ -77,10 +77,7 @@ def new(request):
 
             type = int(data_dict['type'])
 
-            print "data_dict['tag'] == ",data_dict['tag']
-            print "data_dict['content'] == ",data_dict['content']
             if type == 1:
-
                 if not Posts.objects.filter(title=data_dict['title']):
                     # 评论
                     p = Posts(
@@ -122,6 +119,7 @@ def new(request):
         context['UPLOAD_IMG_API'] = settings.UPLOAD_IMG_API
         context['IMG_START'] = settings.IMG_START
     except Exception, e:
+        print "E == ",e
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
     return render_template(request, 'posts/new.html', context)

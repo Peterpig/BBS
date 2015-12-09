@@ -53,5 +53,15 @@
                 </div>
         {% endif %}
     </div>
-{{page.page_ajax_url|safe}}
+<div class="page">
+    {{page.page_ajax_url|safe}}
+</div>
 {% endblock body %}
+
+{% block js %}
+<script type="text/javascript">
+    function go(type,p){
+        location.href = "/?p="+p;
+    }
+</script>
+{% endblock %}
