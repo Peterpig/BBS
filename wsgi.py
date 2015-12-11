@@ -6,8 +6,8 @@ import sys
 
 # 设置工作目录
 sys_base_path = os.path.abspath(__file__)
-sys.path.append(os.path.normpath(os.path.join(sys_base_path, '../..')))
-print "sys.path == "sys.path,
+sys.path.append(os.path.normpath(os.path.join(sys_base_path, '../')))
+
 # 将系统的编码设置为UTF8
 reload(sys)
 sys.setdefaultencoding('utf8')
