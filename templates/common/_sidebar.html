@@ -49,8 +49,8 @@
     <div class="cell fade bk-fade">
         今日热议主题：
     </div>
-    {% if  user.top_list%}
-        {% for top in user.top_list %}
+    {% if  request.top_list%}
+        {% for top in request.top_list %}
             <div class="cell">
                 <a href="">
                     <img src="{{top.post.header_img}}" alt="">

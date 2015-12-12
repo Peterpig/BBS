@@ -46,7 +46,6 @@ class ProfilUser(object):
         return request._cached_user_power
 
 class AuthenticationMiddleware(object):
-
     def process_request(self, request):
         if not request.user.is_anonymous():
             # 非匿名用户增加权限
@@ -140,7 +139,9 @@ class AuthenticationMiddleware(object):
         except Exception, e:
             pass
 
-        user.top_list = top_list
+        if not user.is_anonymous():
+            user.top_list = top_list
+        request.top_list = top_list
 
 
     def get_bbs_detail(self, request):

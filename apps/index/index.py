@@ -13,7 +13,7 @@ from apps.account.common import render_template, Struct
 from libs.utils.lib_page import Page
 
 from libs.models.catalog.model import Catalog
-from libs.models.posts.model import Posts, Vote
+from libs.models.posts.model import Posts, Vote, Options
 
 log = logging.getLogger(__name__)
 
@@ -81,10 +81,18 @@ def wai_index(request):
         except Exception, e:
             top_top_2 = []
 
+        ########### s2 ###########
+        s2 = request.top_list[0]
+        if s2:
+            id = s2['id']
+            s2_post = Posts.objects.seek(pk=id)
+            s2_option = Options.objects.filter(posts=s2_post)
+            context.s2_post = s2_post
+            context.s2_option = s2_option
         context.catalog_list = catalog_list
         context.top_view_2 = top_view_2
         context.top_new_2 = top_new_2
-        context.top_top_2 = user.top_list
+        context.top_top_2 = request.top_list
     except Exception, e:
         print e
         log.error("%s:%s" % (inspect.stack()[0][3], e))

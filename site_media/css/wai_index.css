@@ -1,14 +1,21 @@
 .wai-index{
     padding-top: 30px;
     padding-bottom: 30px;
-
     background-color: #fff;
+}
+.col-md-2{
+    border-right: 1px solid #CCC;
+    margin: 0 auto;
+}
+.col-md-4{
+    border-right: 1px solid #CCC;
+    margin: 0 auto;
 }
 .col-md-3{
     border-right: 1px solid #CCC;
     margin: 0 auto;
 }
-.col-md-3 .user_left_info{
+.user_left_info{
     width: 15%;
     margin: 0 auto;
     padding-right: 10px;
@@ -26,13 +33,13 @@
 .catalog-list{
     width: 30%;
     margin: 0 auto;
-    font-size: 14px;
 }
 
 .catalog-list li{
     margin: 5px 0;
     padding: 10px 0;
     list-style: none;
+    font-size: 15px;
 }
 
 li .li-num{
