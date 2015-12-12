@@ -49,14 +49,20 @@
     <div class="cell fade bk-fade">
         今日热议主题：
     </div>
-    {% for top in user.top_list %}
+    {% if  user.top_list%}
+        {% for top in user.top_list %}
+            <div class="cell">
+                <a href="">
+                    <img src="{{top.post.header_img}}" alt="">
+                </a>
+                <a href="/t/{{top.post.id}}/">{{top.post.title}}</a>
+            </div>
+        {% endfor %}
+    {% else %}
         <div class="cell">
-            <a href="">
-                <img src="{{top.post.header_img}}" alt="">
-            </a>
-            <a href="/t/{{top.post.id}}/">{{top.post.title}}</a>
+        暂无消息
         </div>
-    {% endfor %}
+    {% endif %}
 </div>
 
 <div class="box">
