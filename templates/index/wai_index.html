@@ -11,7 +11,7 @@
 {% endblock css %}
 
 {% block content %}
-    <div class="row wai-index">
+    <div class="row wai-index" style="margin-right:0px;">
         <div class="col-md-2">
             <div class="user_left_info">
                 <span><a href="#">{{user.username}}</a></span>
@@ -46,22 +46,24 @@
         </div>
 
         <div class="col-md-4">
-            <table width="100%" border="1px">
-                <caption>近日最热评论</caption>
-                <thead>
-                    <tr>
-                        <th colspan="2">
-                        <a href="/t/{{s2_post.id}}">{{s2_post.title}}</a></th>
-                    </tr>
-                </thead>
+            <table style="text-align:center;" width="100%">
+                <caption style="font-size:17px;">近日最热评论</caption>
                 <tbody>
-                    <tr>
-                        <td rowspan="2">data1</td>
-                        <td>data2</td>
-                    </tr>
-                    <tr>
-                        <td>data3</td>
-                    </tr>
+                {% if s2 %}
+                        <tr style="font-size:17px;">
+                            <td colspan="2">
+                            <a href="/t/{{s2.post.id}}">{{s2.post.title|slice:":20"}}</a>
+                            </td>
+                        </tr>
+                        {% for o in s2.option %}
+                            <tr style="border:1px solid green;">
+                                <td width="200" height="200">{% if o.img %}<img src="{{o.img}}" alt="" width="200">{% else %}<img src="http://temp.im/200x200/4CD964/fff">{% endif %}</td>
+                                <td>{{o.content|safe}}</td>
+                            </tr>
+                        {% endfor %}
+                {% else %}
+                    暂无
+                {% endif %}
                 </tbody>
             </table>
         </div>

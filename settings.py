@@ -42,7 +42,7 @@ DATABASES = {
         'NAME': 'bbs',                      # Or path to database file if using sqlite3.
         'USER': 'root',                      # Not used with sqlite3.
         'PASSWORD': 'root',                  # Not used with sqlite3.
-        'HOST': '127.0.0.1',                      # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': '101.200.142.55',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '3306',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -106,7 +106,7 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     # 'django.contrib.messages.middleware.MessageMiddleware',
-    # 'BBS.apps.account.middleware.AuthenticationMiddleware',
+    'BBS.apps.account.middleware.AuthenticationMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

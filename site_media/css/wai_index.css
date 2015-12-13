@@ -40,6 +40,7 @@
     padding: 10px 0;
     list-style: none;
     font-size: 15px;
+    width: 200px;
 }
 
 li .li-num{
@@ -53,7 +54,8 @@ li .li-num{
 .top-list .top-title{
     display: block;
     padding: 5px;
-    border-bottom: 1px solid #eee
+    border-bottom: 1px solid #eee;
+    font-size: 17px;
 }
 
 .top-list li{

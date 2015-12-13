@@ -6,6 +6,6 @@ from django.conf import settings
 # admin.autodiscover()
 
 urlpatterns = patterns('apps.index.index',
-    (r'^$', 'index'),        # 首页
-    (r'^index/$', 'wai_index'),        # 外首页
+    (r'^index/$', 'index'),        # 首页
+    (r'^$', 'wai_index'),        # 外首页
 )
