@@ -66,6 +66,9 @@
                 {% endif %}
                 </tbody>
             </table>
+            {% if s2 %}
+            <div class="ds-thread" data-thread-key="{{s2.post.id}}" data-title="{{s2.post.title}}" ></div>
+            {% endif %}
         </div>
 
         <div class="col-md-3">
@@ -156,4 +159,14 @@
 
 {% block js %}
     <script src="/site_media/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"zhuzh"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
 {% endblock js %}
