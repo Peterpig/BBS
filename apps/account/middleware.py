@@ -137,12 +137,11 @@ class AuthenticationMiddleware(object):
                 else:
                     break
         except Exception, e:
-            pass
+            print e
 
         if not user.is_anonymous():
             user.top_list = top_list
-        request.top_list = top_list
-
+        request.session['top_list'] = top_list
 
     def get_bbs_detail(self, request):
         # 右侧社区详情

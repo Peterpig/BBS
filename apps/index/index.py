@@ -82,17 +82,18 @@ def wai_index(request):
             top_top_2 = []
 
         ########### s2 ###########
-        s2 = request.top_list[0]
+        s2 = request.session.get('top_list', '')
         if s2:
+            s2 = s2[0]
             id = s2['id']
             s2_post = Posts.objects.seek(pk=id)
             s2_option = Options.objects.filter(posts=s2_post)
-            context.s2_post = s2_post
-            context.s2_option = s2_option
+            s2['post'] = s2_post
+            s2['option'] = s2_option
         context.catalog_list = catalog_list
         context.top_view_2 = top_view_2
-        context.top_new_2 = top_new_2
-        context.top_top_2 = request.top_list
+        context.s2 = s2
+        # context.top_top_2 = request.top_list
     except Exception, e:
         print e
         log.error("%s:%s" % (inspect.stack()[0][3], e))
