@@ -110,8 +110,7 @@
     margin: 0 3px;
 }
 
-.current{
+.current a{
     background-color: #1b89ee;
     color: #fff;
-
 }

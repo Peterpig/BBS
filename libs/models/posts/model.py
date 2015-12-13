@@ -45,6 +45,9 @@ class Options(models.Model):
     class Meta:
         db_table = 'posts_options'
 
+    def get_count(self):
+        return Vote.objects.filter(option=self).count()
+
 class Vote(models.Model):
     """帖子投票"""
     option = models.ForeignKey(Options)

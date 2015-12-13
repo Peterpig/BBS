@@ -52,6 +52,7 @@
                 {% if s2 %}
                         <tr style="font-size:17px;">
                             <td colspan="2">
+                            <a style="margin-bottom:10px;" href="/t/{{s2.post.id}}" class="button_small">点我投票</a>
                             <a href="/t/{{s2.post.id}}">{{s2.post.title|slice:":20"}}</a>
                             </td>
                         </tr>
@@ -59,6 +60,7 @@
                             <tr style="border:1px solid green;">
                                 <td width="200" height="200">{% if o.img %}<img src="{{o.img}}" alt="" width="200">{% else %}<img src="http://temp.im/200x200/4CD964/fff">{% endif %}</td>
                                 <td>{{o.content|safe}}</td>
+                                <td>{{o.get_count}}票</td>
                             </tr>
                         {% endfor %}
                 {% else %}
