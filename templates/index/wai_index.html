@@ -36,7 +36,7 @@
                     {% for c in catalog_list %}
                         <li>
                             <span class="li-num" style="color:{{c.rgb}}">{{forloop.counter}}</span>
-                            <a class="li-catalog" href="/?catalog={{c.id}}">
+                            <a class="li-catalog" href="/index/?catalog={{c.id}}">
                                 <span style="color:{{c.rgb}}">{{c.name}}&nbsp;</span>
                             </a>
                         </li>
@@ -60,7 +60,7 @@
                             <tr style="border:1px solid green;">
                                 <td width="200" height="200">{% if o.img %}<img src="{{o.img}}" alt="" width="200">{% else %}<img src="http://temp.im/200x200/4CD964/fff">{% endif %}</td>
                                 <td>{{o.content|safe}}</td>
-                                <td>{{o.get_count}}票</td>
+                                <td>{{o.get_count|default:0}}票</td>
                             </tr>
                         {% endfor %}
                 {% else %}
