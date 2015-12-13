@@ -46,7 +46,8 @@ class Options(models.Model):
         db_table = 'posts_options'
 
     def get_count(self):
-        return Vote.objects.filter(option=self).count()
+        obj = Vote.objects.filter(option=self)
+        return obj.count() if obj else 0
 
 class Vote(models.Model):
     """帖子投票"""
