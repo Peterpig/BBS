@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 from django import forms
 from django.db import models
 from django.contrib.auth.models import User
@@ -15,6 +16,7 @@ class Posts(models.Model):
     content = models.CharField(u'内容')
     add_time = models.DateField(u'添加时间')
     catalog = models.ForeignKey(Catalog)    # 分类
+    end_date = models.DateField(u'投票截止日期') # type=2时有效
 
     class Meta:
         db_table = 'posts'
@@ -25,17 +27,33 @@ class Posts(models.Model):
         else:
             return '/site_media/img/default.jpg'
 
-# class Message(models.Model):
-#     """帖子留言"""
-#     user_id = models.IntegerField(u'用户id', default=0)
-#     posts = models.ForeignKey(Posts)
-#     content = models.CharField(u'内容')
-#     message_to = models.IntegerField(u'@的人')
+    def get_posts_vote(self, date):
+        # 该帖子的所有投票数
+        option_list = Options.objects.filter(posts=self)
+        if option_list:
+            num = 0
+            for o in option_list:
+                if date:
+                    num += o.get_count(date)
+                else:
+                    num += o.get_count()
+            return num
+        else:
+            return 0
 
-#     class Meta:
-#         db_table = 'message'
-
-
+    def get_most_posts_vote(self):
+        today = datetime.date.today()
+        all_post = Posts.objects.filter(pk__gt=0)
+        obj = ''    # 今天投票最多的文章
+        for p in all_post:
+            if not obj:
+                obj = p
+                continue
+            else:
+                num1 = obj.get_posts_vote(today)
+                num2 = p.get_posts_vote(today)
+                obj = obj if num1 < num2 else p
+        return obj
 class Options(models.Model):
     """帖子投票选项"""
     posts = models.ForeignKey(Posts)
@@ -45,8 +63,10 @@ class Options(models.Model):
     class Meta:
         db_table = 'posts_options'
 
-    def get_count(self):
+    def get_count(self, date=''):
         obj = Vote.objects.filter(option=self)
+        if date:
+            obj = obj.filter(add_time__gt=date)
         return obj.count() if obj else 0
 
 class Vote(models.Model):

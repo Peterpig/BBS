@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 import inspect
 import logging
 import random
@@ -81,18 +82,22 @@ def wai_index(request):
         except Exception, e:
             top_top_2 = []
 
-        ########### s2 ###########
-        s2 = request.session.get('top_list', '')
-        if s2:
-            s2 = s2[0]
-            id = s2['id']
-            s2_post = Posts.objects.seek(pk=id)
-            s2_option = Options.objects.filter(posts=s2_post)
-            s2['post'] = s2_post
-            s2['option'] = s2_option
+        ########### s2 今日最热投票 ###########
+        today = datetime.date.today()
+        all_post = Posts.objects.filter(pk__gt=0, type=2)
+        # obj = ''    # 今天投票最多的文章
+        # for p in all_post:
+        #     if not obj:
+        #         obj = p
+        #         continue
+        #     else:
+        #         num1 = obj.get_posts_vote(today)
+        #         num2 = p.get_posts_vote(today)
+        #         obj = obj if num1 < num2 else p
+        print obj
         context.catalog_list = catalog_list
         context.top_view_2 = top_view_2
-        context.s2 = s2
+        context.s2 = 's2'
         # context.top_top_2 = request.top_list
     except Exception, e:
         print e
