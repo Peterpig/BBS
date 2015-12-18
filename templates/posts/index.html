@@ -47,15 +47,15 @@
                     <div class="vote-list">
                         <table>
                             <tr align="center">
-                                <td class="img-table" id="{{option.id}}"><img src="{% if option.img %}{{option.img}}{% else %}http://temp.im/200x200/4CD964/fff{% endif %}" alt=""></td>
-                                <td>{{option.content|safe}}</td>
-                                <td><span class="button_small">{{option.v_count}}票</span><br>
-                                {% if not user.is_anonymous %}
+                                <td class="img-table" id="{{option.option.id}}"><img src="{% if option.option.img %}{{option.option.img}}{% else %}http://temp.im/200x200/4CD964/fff{% endif %}" alt=""></td>
+                                <td>{{option.option.content|safe}}</td>
+                                <td><span class="button_small">{{option.option.v_count}}票</span><br>
+                                {% if not user.is_anonymous and posts.is_vote %}
                                     <!-- 登录用户才可以投票 -->
-                                    <button type="button" class="button_small JS-vote" id="{{option.id}}">投票</button><br>
+                                    <button type="button" class="button_small JS-vote" id="{{option.option.id}}">投票</button><br>
 
                                     {% if user.is_superuser %}
-                                        <button type="button" class="button_small button_danger JS-del-vote" id="{{option.id}}">删除</button></td>
+                                        <button type="button" class="button_small button_danger JS-del-vote" id="{{option.option.id}}">删除</button></td>
                                     {% endif %}
                                 {% endif %}
                                 </td>

@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="/site_media/css/article.css">
 <link rel="stylesheet" href="/site_media/css/new.css">
 <link rel="stylesheet" href="/site_media/css/common/uploadify.css"></script>
+<link href="//cdn.bootcss.com/jquery-datetimepicker/2.1.8/jquery.datetimepicker.min.css" rel="stylesheet" type="text/css" />
 {% endblock %}
 {% block title %}创作新主题{% endblock title %}
 {% block body %}
@@ -82,6 +83,8 @@
                     {% endfor %}
                 </select>
             </div>
+        
+            <span class="datetime-span">请选择投票结束日期：</span><input type="text" class="datetime" name="end_date" id="end_date" value="" placeholder="请选择投票结束日期">
 
             <div class="submit-bottom">
                 <div class="btn-left">
@@ -106,6 +109,7 @@
 <script src="/site_media/js/new.js" type="text/javascript" charset="utf-8"></script>
 <script src="/site_media/js/layer.js"></script>
 <script src="/site_media/js/uploadify/jquery.uploadify.min.js"></script>
+<script type='text/javascript' src='//cdn.bootcss.com/jquery-datetimepicker/2.1.9/jquery.datetimepicker.min.js'></script>
 <script>
     var json_dic;
     var pic_list = new Array();
@@ -115,11 +119,17 @@
             if (value === "2") {
                 $(".mce-panel").hide();
                 $(".option-list").show();
+                $(".datetime-span").show();
+                $("#end_date").show();
             }else{
                 $(".mce-panel").show();
                 $(".option-list").hide();
+                $(".datetime-span").hide();
+                $("#end_date").hide();
+                if($(".art-content").length <=0 ){
                 var text_html = '<textarea class="art-content" name="content" id="content"></textarea>'
                 $(".art-header").after(text_html);
+                }
                 tinymce.init({
                     selector: "textarea#content",
                     //width: 800,
@@ -144,6 +154,13 @@
         layer.config({
             extend: 'extend/layer.ext.js'
         });
+        $("#end_date").datetimepicker({
+            lang: 'ch',
+            format: 'Y-m-d',
+            changeMonth: true,
+            changeYear: true,
+            timepicker:false
+        })
     });
 
 </script>

@@ -1,6 +1,7 @@
 function submit_content() {
     var title = $("#title").val();
     var content = $("#content").val();
+    var end_date = $("#end_date").val();
     var type = $("input[type=radio]:checked").val();
     var tag = $("#select").find("option:selected").val();
     var option = new Array();
@@ -30,7 +31,11 @@ function submit_content() {
         layer.tips("请选择一个分类！", "#select", {tips: [1, '#3595CC'],time: 2500});
         return
     }
-    var post_dic = {"title": title, "content": content, "option":option, "tag":tag, "type":type};
+    if (end_date === "") {
+        layer.tips("请填写投票截止日期！", "#end_date", {tips: [1, '#3595CC'],time: 2500});
+        return
+    }
+    var post_dic = {"title": title, "content": content, "option":option, "tag":tag, "type":type, "end_date":end_date};
     var data_dict = {"data_dict":JSON.stringify(post_dic)}
     $.post('/new/', data_dict, function(d) {
         if (d.response == 'ok') {

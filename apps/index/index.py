@@ -94,7 +94,7 @@ def wai_index(request):
         #         num1 = obj.get_posts_vote(today)
         #         num2 = p.get_posts_vote(today)
         #         obj = obj if num1 < num2 else p
-        print obj
+        # print obj
         context.catalog_list = catalog_list
         context.top_view_2 = top_view_2
         context.s2 = 's2'

@@ -32,9 +32,11 @@ def index(request, id):
         posts = Posts.objects.seek(pk=id)
         up = UserProfile.objects.seek(user=posts.user)
         posts.user.header_img = up.header_img if up else ""
+        posts.is_vote = 1 if datetime.date.today() < posts.end_date else 0
         if posts.type == 2:
             option_list = Options.objects.filter(posts=posts)
             all_vote = Vote.objects.filter(option__in=option_list).count()
+            _list = []
             for option in option_list:
                 v_count = Vote.objects.filter(
                                 option__id=option.id
@@ -42,14 +44,17 @@ def index(request, id):
 
                 # 每个选项的票数
                 option.v_count = v_count
-
+                # 是否可以投票
+                _list.append({'option':option, 'v_count':v_count})
                 # 每个选项的百分比
                 option.present = int(float(v_count)/float(all_vote)) if all_vote else 0
         posts.views = posts.views + 1
         posts.save()
         context.posts = posts
-        context.option_list = option_list
+        context.option_list = sorted(_list, key=lambda x:-x['v_count'])
+        # context.option_list = option_list
     except Exception, e:
+        print e
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
     return render_template(request, 'posts/index.html', context)
@@ -93,12 +98,15 @@ def new(request):
                     return ajax_fail(error="文章已存在,请换个标题试试!")
             else:
                 # 投票
+
+                print "data_dict['end_date'] == ",data_dict['end_date']
                 p = Posts(
                     title = data_dict['title'],
                     user = user,
                     add_time = datetime.datetime.now(),
                     type = data_dict['type'],
-                    catalog_id = data_dict['tag']
+                    catalog_id = data_dict['tag'],
+                    end_date = data_dict['end_date']
                     )
                 p.save()
                 # 添加选项内容
