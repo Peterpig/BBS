@@ -46,26 +46,28 @@
         </div>
 
         <div class="col-md-4">
-            <table style="text-align:center;" width="100%">
-                <caption style="font-size:17px;">今日最热评论</caption>
+            <table style="text-align:center;">
+                <caption style="font-size:17px;">今日最热榜单</caption>
                 <tbody>
-                {% if s2 %}
                         <tr style="font-size:17px;">
+                        {% if s2 %}
                             <td colspan="2">
                             <a style="margin-bottom:10px;" href="/t/{{s2.post.id}}" class="button_small">点我投票</a>
                             <a href="/t/{{s2.post.id}}">{{s2.post.title|slice:":20"}}</a>
                             </td>
                         </tr>
-                        {% for o in s2.option %}
-                            <tr style="border:1px solid green;">
-                                <td width="200" height="200">{% if o.img %}<img src="{{o.img}}" alt="" width="200">{% else %}<img src="http://temp.im/200x200/4CD964/fff">{% endif %}</td>
-                                <td>{{o.content|safe}}</td>
-                                <td>{{o.get_count|default:0}}票</td>
-                            </tr>
-                        {% endfor %}
-                {% else %}
-                    暂无
-                {% endif %}
+                            {% for o in s2.option %}
+                                <tr style="border:1px solid green;">
+                                    <td width="200" height="200">{% if o.option.img %}<img src="{{o.option.img}}" alt="" width="200">{% else %}<img src="http://temp.im/200x200/4CD964/fff">{% endif %}</td>
+                                    <td title="{{o.option.content|safe}}">{{o.option.content|safe|slice:"100"}}</td>
+                                    <td width="10%">{{o.option.get_count|default:0}}票</td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <td colspan="2">
+                                暂无
+                            </td>
+                        {% endif %}
                 </tbody>
             </table>
             {% if s2 %}

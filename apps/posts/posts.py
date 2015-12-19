@@ -32,7 +32,7 @@ def index(request, id):
         posts = Posts.objects.seek(pk=id)
         up = UserProfile.objects.seek(user=posts.user)
         posts.user.header_img = up.header_img if up else ""
-        posts.is_vote = 1 if datetime.date.today() < posts.end_date else 0
+        posts.is_vote = 1 if datetime.datetime.now() < posts.end_date else 0
         if posts.type == 2:
             option_list = Options.objects.filter(posts=posts)
             all_vote = Vote.objects.filter(option__in=option_list).count()
@@ -54,7 +54,6 @@ def index(request, id):
         context.option_list = sorted(_list, key=lambda x:-x['v_count'])
         # context.option_list = option_list
     except Exception, e:
-        print e
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
     return render_template(request, 'posts/index.html', context)
@@ -79,6 +78,9 @@ def new(request):
 
             if not data_dict['tag']:
                 return ajax_fail('请选择一个分类！')
+
+            if type == 2  and not data_dict['end_date'] :
+                return ajax_fail('请填写投票结束日期！')
 
             type = int(data_dict['type'])
 

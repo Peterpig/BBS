@@ -7,6 +7,7 @@ import random
 import urllib2
 import simplejson as json
 
+from django.core.cache import cache
 from django.db.models import Q
 from django.conf import settings
 
@@ -85,19 +86,35 @@ def wai_index(request):
         ########### s2 今日最热投票 ###########
         today = datetime.date.today()
         all_post = Posts.objects.filter(pk__gt=0, type=2)
-        # obj = ''    # 今天投票最多的文章
-        # for p in all_post:
-        #     if not obj:
-        #         obj = p
-        #         continue
-        #     else:
-        #         num1 = obj.get_posts_vote(today)
-        #         num2 = p.get_posts_vote(today)
-        #         obj = obj if num1 < num2 else p
-        # print obj
+        obj = ''    # 今天投票最多的文章
+        if cache.get('most_vote'):
+            obj = cache.get('most_vote')
+        else:
+            for p in all_post:
+                if not obj:
+                    obj = p
+                    continue
+                else:
+                    num1 = obj.get_posts_vote(today)
+                    num2 = p.get_posts_vote(today)
+                    obj = obj if num1 < num2 else p
+                    cache.set('most_vote', obj, 60*60*2)
+        option_list = Options.objects.filter(posts=obj)
+        all_vote = Vote.objects.filter(option__in=option_list).count()
+        _list = []
+        for option in option_list:
+            v_count = Vote.objects.filter(
+                            option__id=option.id
+                        ).count()
+
+            # 每个选项的票数
+            option.v_count = v_count
+            # 是否可以投票
+            _list.append({'option':option, 'v_count':v_count})
         context.catalog_list = catalog_list
         context.top_view_2 = top_view_2
-        context.s2 = 's2'
+        option = Options.objects.filter(posts=obj)
+        context.s2 = {'post':obj, 'option':sorted(_list, key=lambda x:-x['v_count'])}
         # context.top_top_2 = request.top_list
     except Exception, e:
         print e
