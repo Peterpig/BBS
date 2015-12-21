@@ -32,6 +32,7 @@ def index(request, id):
         posts = Posts.objects.seek(pk=id)
         up = UserProfile.objects.seek(user=posts.user)
         posts.user.header_img = up.header_img if up else ""
+        # 是否可以投票
         posts.is_vote = 1 if datetime.datetime.now() < posts.end_date else 0
         if posts.type == 2:
             option_list = Options.objects.filter(posts=posts)
@@ -44,7 +45,6 @@ def index(request, id):
 
                 # 每个选项的票数
                 option.v_count = v_count
-                # 是否可以投票
                 _list.append({'option':option, 'v_count':v_count})
                 # 每个选项的百分比
                 option.present = int(float(v_count)/float(all_vote)) if all_vote else 0

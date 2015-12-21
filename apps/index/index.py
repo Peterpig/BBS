@@ -113,6 +113,7 @@ def wai_index(request):
             _list.append({'option':option, 'v_count':v_count})
         context.catalog_list = catalog_list
         context.top_view_2 = top_view_2
+        context.top_new_2 = top_new_2
         option = Options.objects.filter(posts=obj)
         context.s2 = {'post':obj, 'option':sorted(_list, key=lambda x:-x['v_count'])}
         # context.top_top_2 = request.top_list
