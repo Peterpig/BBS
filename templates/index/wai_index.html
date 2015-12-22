@@ -46,11 +46,11 @@
         </div>
 
         <div class="col-md-4">
-            <table style="text-align:center;">
+            <table style="text-align:center;" width="100%">
                 <caption style="font-size:17px;">今日最热榜单</caption>
                 <tbody>
-                        <tr style="font-size:17px;">
                         {% if s2 %}
+                        <tr style="font-size:17px;">
                             <td colspan="2">
                             <a style="margin-bottom:10px;" href="/t/{{s2.post.id}}" class="button_small">点我投票</a>
                             <a href="/t/{{s2.post.id}}">{{s2.post.title|slice:":20"}}</a>
@@ -64,9 +64,11 @@
                                 </tr>
                             {% endfor %}
                         {% else %}
-                            <td colspan="2">
+                        <tr>
+                            <td colspan="2" style="font-size:17px;">
                                 暂无
                             </td>
+                        </tr>
                         {% endif %}
                 </tbody>
             </table>

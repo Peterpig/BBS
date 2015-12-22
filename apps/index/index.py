@@ -99,23 +99,24 @@ def wai_index(request):
                     num2 = p.get_posts_vote(today)
                     obj = obj if num1 < num2 else p
                     cache.set('most_vote', obj, 60*60*2)
-        option_list = Options.objects.filter(posts=obj)
-        all_vote = Vote.objects.filter(option__in=option_list).count()
-        _list = []
-        for option in option_list:
-            v_count = Vote.objects.filter(
-                            option__id=option.id
-                        ).count()
+        if obj:
+            option_list = Options.objects.filter(posts=obj)
+            all_vote = Vote.objects.filter(option__in=option_list).count()
+            _list = []
+            for option in option_list:
+                v_count = Vote.objects.filter(
+                                option__id=option.id
+                            ).count()
 
-            # 每个选项的票数
-            option.v_count = v_count
-            # 是否可以投票
-            _list.append({'option':option, 'v_count':v_count})
+                # 每个选项的票数
+                option.v_count = v_count
+                # 是否可以投票
+                _list.append({'option':option, 'v_count':v_count})
+                context.s2 = {'post':obj, 'option':sorted(_list, key=lambda x:-x['v_count'])}
         context.catalog_list = catalog_list
         context.top_view_2 = top_view_2
         context.top_new_2 = top_new_2
         option = Options.objects.filter(posts=obj)
-        context.s2 = {'post':obj, 'option':sorted(_list, key=lambda x:-x['v_count'])}
         # context.top_top_2 = request.top_list
     except Exception, e:
         print e
