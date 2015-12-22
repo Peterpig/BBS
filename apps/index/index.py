@@ -85,7 +85,7 @@ def wai_index(request):
 
         ########### s2 今日最热投票 ###########
         today = datetime.date.today()
-        all_post = Posts.objects.filter(pk__gt=0, type=2)
+        all_post = Posts.objects.filter(pk__gt=0, type=2, add_time__gt=today)
         obj = ''    # 今天投票最多的文章
         if cache.get('most_vote'):
             obj = cache.get('most_vote')
