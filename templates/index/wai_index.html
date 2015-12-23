@@ -1,5 +1,6 @@
 {% extends "common/base.html" %}
 {% block title %}首页{% endblock %}
+{% load nav %}
 {% block css %}
 <link rel="stylesheet" type="text/css" href="/site_media/css/wai_index.css">
 <link rel="stylesheet" href="/site_media/bootstrap/css/bootstrap.min.css">
@@ -59,7 +60,7 @@
                             {% for o in s2.option %}
                                 <tr style="border:1px solid green;">
                                     <td width="200" height="200">{% if o.option.img %}<img src="{{o.option.img}}" alt="" width="200">{% else %}<img src="http://temp.im/200x200/4CD964/fff">{% endif %}</td>
-                                    <td title="{{o.option.content|safe}}">{{o.option.content|safe|slice:"100"}}</td>
+                                    <td title="{{o.option.content|safe}}" style="border-right: 1px solid #ccc;border-left: 1px solid #ccc;">{{o.option.content|safe|cut_title:"150"}}</td>
                                     <td width="10%">{{o.option.get_count|default:0}}票</td>
                                 </tr>
                             {% endfor %}

@@ -85,41 +85,41 @@ def wai_index(request):
 
         ########### s2 今日最热投票 ###########
         today = datetime.date.today()
-        all_post = Posts.objects.filter(pk__gt=0, type=2, add_time__gt=today)
-        obj = ''    # 今天投票最多的文章
-        if cache.get('most_vote'):
-            obj = cache.get('most_vote')
-        else:
-            for p in all_post:
-                if not obj:
-                    obj = p
-                    continue
-                else:
-                    num1 = obj.get_posts_vote(today)
-                    num2 = p.get_posts_vote(today)
-                    obj = obj if num1 < num2 else p
-                    cache.set('most_vote', obj, 60*60*2)
-        if obj:
+        all_vote_list = Vote.objects.filter(add_time__gt=today).order_by('option')
+        _dic = {}
+        for v in all_vote_list:
+            if _dic.get(v.option.id):
+                _dic[v.option.id].append(v.id)
+            else:
+                _list = []
+                _list.append(v.id)
+                _dic[v.option.id] = _list
+        obj = ''
+        num = 0
+        for k in _dic:
+            if not obj:
+                obj = k
+                num = len(_dic[k])
+            else:
+                num = num if num > len(_dic[k]) else len(_dic[k])
+        op = Options.objects.seek(pk=obj)
+        if op:
+            obj = op.posts
             option_list = Options.objects.filter(posts=obj)
-            all_vote = Vote.objects.filter(option__in=option_list).count()
             _list = []
             for option in option_list:
-                v_count = Vote.objects.filter(
-                                option__id=option.id
-                            ).count()
+                v_count = Vote.objects.filter(option__id=option.id).count()
 
                 # 每个选项的票数
                 option.v_count = v_count
-                # 是否可以投票
                 _list.append({'option':option, 'v_count':v_count})
-                context.s2 = {'post':obj, 'option':sorted(_list, key=lambda x:-x['v_count'])}
+            option = sorted(_list, key=lambda x:-x['v_count'])
+            context.s2 = {'post':obj, 'option': option}
         context.catalog_list = catalog_list
         context.top_view_2 = top_view_2
         context.top_new_2 = top_new_2
-        option = Options.objects.filter(posts=obj)
         # context.top_top_2 = request.top_list
     except Exception, e:
-        print e
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
 
