@@ -31,7 +31,7 @@ function submit_content() {
         layer.tips("请选择一个分类！", "#select", {tips: [1, '#3595CC'],time: 2500});
         return
     }
-    if (end_date === "") {
+    if (type === "2" && end_date === "") {
         layer.tips("请填写投票截止日期！", "#end_date", {tips: [1, '#3595CC'],time: 2500});
         return
     }

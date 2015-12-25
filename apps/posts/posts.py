@@ -33,8 +33,8 @@ def index(request, id):
         up = UserProfile.objects.seek(user=posts.user)
         posts.user.header_img = up.header_img if up else ""
         # 是否可以投票
-        posts.is_vote = 1 if datetime.datetime.now() < posts.end_date else 0
         if posts.type == 2:
+            posts.is_vote = 1 if datetime.datetime.now() < posts.end_date else 0
             option_list = Options.objects.filter(posts=posts)
             all_vote = Vote.objects.filter(option__in=option_list).count()
             _list = []
@@ -79,10 +79,10 @@ def new(request):
             if not data_dict['tag']:
                 return ajax_fail('请选择一个分类！')
 
+            type = int(data_dict['type'])
+
             if type == 2  and not data_dict['end_date'] :
                 return ajax_fail('请填写投票结束日期！')
-
-            type = int(data_dict['type'])
 
             if type == 1:
                 if not Posts.objects.filter(title=data_dict['title']):
