@@ -54,7 +54,7 @@ function submit_content() {
 
 function add_option() {
     var len = $(".option").length;
-    var html = '<div class="btnAndInput"><textarea class="msl option" rows="5" maxlength="120" id="option'+ len + '" name="option' + len + '" placeholder="请输入要投票的选项"></textarea><button type="button" class="button_small" data-id="option'+ len + '">添加图片</button><input type="text" id="option'+len+'_img" name="option'+len+'_img" value="" hidden>';
+    var html = '<div class="btnAndInput"><textarea class="msl option" rows="5" id="option'+ len + '" name="option' + len + '" placeholder="请输入要投票的选项"></textarea><button type="button" class="button_small" data-id="option'+ len + '">添加图片</button><input type="text" id="option'+len+'_img" name="option'+len+'_img" value="" hidden>';
     if (len === 3) {
         $("#option2").parent().after(html);
     }else{
