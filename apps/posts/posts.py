@@ -99,29 +99,28 @@ def new(request):
                 else:
                     return ajax_fail(error="文章已存在,请换个标题试试!")
             else:
-                # 投票
-
-                print "data_dict['end_date'] == ",data_dict['end_date']
-                p = Posts(
-                    title = data_dict['title'],
-                    user = user,
-                    add_time = datetime.datetime.now(),
-                    type = data_dict['type'],
-                    catalog_id = data_dict['tag'],
-                    end_date = data_dict['end_date']
-                    )
-                p.save()
-                # 添加选项内容
-                option_list = data_dict['option']
-                for option in option_list:
-                    o = Options(
-                            posts_id = p.id,
-                            content = option['val'],
-                            img = option['img']
+                if not Posts.objects.filter(title=data_dict['title']):
+                    # 投票
+                    p = Posts(
+                        title = data_dict['title'],
+                        user = user,
+                        add_time = datetime.datetime.now(),
+                        type = data_dict['type'],
+                        catalog_id = data_dict['tag'],
+                        end_date = data_dict['end_date']
                         )
-                    o.save()
+                    p.save()
+                    # 添加选项内容
+                    option_list = data_dict['option']
+                    for option in option_list:
+                        o = Options(
+                                posts_id = p.id,
+                                content = option['val'],
+                                img = option['img']
+                            )
+                        o.save()
 
-            return ajax_ok(p.id)
+                    return ajax_ok(p.id)
 
         # GET
         catalog_list = Catalog.objects.filter(pk__gt=0)
