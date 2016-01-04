@@ -46,11 +46,11 @@ def wai_index(request):
     try:
         catalog_list = get_tags()
         # 最热榜单
-        top_view = Posts.objects.filter(pk__gt=0, type=2).order_by('-views')[:5]
+        top_view = Posts.objects.filter(pk__gt=0, type=2).order_by('-views')[:10]
         # 最新发布的榜单
-        top_new = Posts.objects.filter(pk__gt=0, type=2).order_by('-add_time')[:5]
+        top_new = Posts.objects.filter(pk__gt=0, type=2).order_by('-add_time')[:10]
         # 最后投票的榜单
-        top_vote = Vote.objects.filter(pk__gt=0, option__posts__type=2).order_by('-add_time')[:5]
+        top_vote = Vote.objects.filter(pk__gt=0, option__posts__type=2).order_by('-add_time')[:10]
         context.top_view = top_view
         context.top_new = top_new
         context.top_vote = top_vote
@@ -58,9 +58,9 @@ def wai_index(request):
         ########### 话题 ###########
 
         # 最热榜单
-        top_view_2 = Posts.objects.filter(pk__gt=0, type=1).order_by('-views')[:5]
+        top_view_2 = Posts.objects.filter(pk__gt=0, type=1).order_by('-views')[:10]
         # 最新发布的榜单
-        top_new_2 = Posts.objects.filter(pk__gt=0, type=1).order_by('-add_time')[:5]
+        top_new_2 = Posts.objects.filter(pk__gt=0, type=1).order_by('-add_time')[:10]
         # 上升最快的榜单
         url = 'http://api.duoshuo.com/sites/listTopThreads.json?short_name=zhuzh&range=daily'
         try:
@@ -114,7 +114,7 @@ def wai_index(request):
                 option.v_count = v_count
                 _list.append({'option':option, 'v_count':v_count})
             option = sorted(_list, key=lambda x:-x['v_count'])
-            context.s2 = {'post':obj, 'option': option}
+            context.s2 = {'post':obj, 'option': option[:10]}
         context.catalog_list = catalog_list
         context.top_view_2 = top_view_2
         context.top_new_2 = top_new_2
