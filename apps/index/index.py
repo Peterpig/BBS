@@ -102,19 +102,20 @@ def wai_index(request):
                 num = len(_dic[k])
             else:
                 num = num if num > len(_dic[k]) else len(_dic[k])
-        op = Options.objects.seek(pk=obj)
-        if op:
-            obj = op.posts
-            option_list = Options.objects.filter(posts=obj)
-            _list = []
-            for option in option_list:
-                v_count = Vote.objects.filter(option__id=option.id).count()
+        if obj:
+            op = Options.objects.seek(pk=obj)
+            if op:
+                obj = op.posts
+                option_list = Options.objects.filter(posts=obj)
+                _list = []
+                for option in option_list:
+                    v_count = Vote.objects.filter(option__id=option.id).count()
 
-                # 每个选项的票数
-                option.v_count = v_count
-                _list.append({'option':option, 'v_count':v_count})
-            option = sorted(_list, key=lambda x:-x['v_count'])
-            context.s2 = {'post':obj, 'option': option[:10]}
+                    # 每个选项的票数
+                    option.v_count = v_count
+                    _list.append({'option':option, 'v_count':v_count})
+                option = sorted(_list, key=lambda x:-x['v_count'])
+                context.s2 = {'post':obj, 'option': option[:10]}
         context.catalog_list = catalog_list
         context.top_view_2 = top_view_2
         context.top_new_2 = top_new_2
