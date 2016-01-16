@@ -221,7 +221,7 @@ def download_file(request):
             "shareOverLan" : false,
             "isDefault" : false,
             "localPort" : 1080,
-            "pacUrl" : "http://127.0.0.1:8388/pac",
+            "pacUrl" : "http://127.0.0.1:1080/pac",
             "useOnlinePac" : false,
             "reconnectTimes" : 3,
             "randomAlgorithm" : 0,
