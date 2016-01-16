@@ -183,7 +183,7 @@ def download_file(request):
             "configs" : [
                 {
                     "remarks" : "",
-                    "server" : "ss1.anyb.tk",
+                    "server" : "%s",
                     "server_port" : %s,
                     "password" : "%s",
                     "method" : "aes-256-cfb",
@@ -199,7 +199,7 @@ def download_file(request):
                 },
                 {
                     "remarks" : "",
-                    "server" : "ss2.anyb.tk",
+                    "server" : "%s",
                     "server_port" : %s,
                     "password" : "%s",
                     "method" : "aes-256-cfb",
@@ -234,6 +234,6 @@ def download_file(request):
             "proxyAuthPass" : null,
             "autoban" : false
         }
-    """% (port, password, port, password)
+    """% (s1, port, password, s2, port, password)
     )
     return response
