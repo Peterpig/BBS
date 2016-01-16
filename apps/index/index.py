@@ -164,3 +164,76 @@ def search(request):
         log.error("%s:%s" % (inspect.stack()[0][3], e))
 
     return render_template(request, 'index/index.html', context)
+
+
+def download_file(request): 
+    """
+    功能说明：    下载账号密码  
+    """
+    from django.http import HttpResponse
+    port = request.GET.get("port","")
+    password = request.GET.get("password","")
+    response = HttpResponse(mimetype='text/plain')
+    file_name = u"gui-config"
+                                       
+    response['Content-Disposition'] = 'attachment; filename=%s.json' % file_name.encode('GBK')
+    
+    response.write(u"""
+        {
+            "configs" : [
+                {
+                    "remarks" : "",
+                    "server" : "ss1.anyb.tk",
+                    "server_port" : %s,
+                    "password" : "%s",
+                    "method" : "aes-256-cfb",
+                    "obfs" : "plain",
+                    "obfsparam" : "",
+                    "remarks_base64" : "",
+                    "tcp_over_udp" : false,
+                    "udp_over_tcp" : false,
+                    "protocol" : "origin",
+                    "obfs_udp" : false,
+                    "enable" : true,
+                    "id" : "0E-25-50-5D-4F-C9-27-22-E7-1E-09-77-15-81-93-17"
+                },
+                {
+                    "remarks" : "",
+                    "server" : "ss2.anyb.tk",
+                    "server_port" : %s,
+                    "password" : "%s",
+                    "method" : "aes-256-cfb",
+                    "obfs" : "plain",
+                    "obfsparam" : "",
+                    "remarks_base64" : "",
+                    "tcp_over_udp" : false,
+                    "udp_over_tcp" : false,
+                    "protocol" : "origin",
+                    "obfs_udp" : false,
+                    "enable" : true,
+                    "id" : "0D-D0-62-25-64-AB-E1-6E-70-58-D7-6A-2A-B8-2E-B3"
+                }
+            ],
+            "index" : 0,
+            "random" : false,
+            "global" : false,
+            "enabled" : true,
+            "shareOverLan" : false,
+            "isDefault" : false,
+            "localPort" : 1080,
+            "pacUrl" : "http://127.0.0.1:8388/pac",
+            "useOnlinePac" : false,
+            "reconnectTimes" : 3,
+            "randomAlgorithm" : 0,
+            "TTL" : 0,
+            "proxyEnable" : false,
+            "proxyType" : 0,
+            "proxyHost" : null,
+            "proxyPort" : 0,
+            "proxyAuthUser" : null,
+            "proxyAuthPass" : null,
+            "autoban" : false
+        }
+    """% (port, password, port, password)
+    )
+    return response

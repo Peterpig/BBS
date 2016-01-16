@@ -8,4 +8,5 @@ from django.conf import settings
 urlpatterns = patterns('apps.index.index',
     (r'^index/$', 'index'),        # 首页
     (r'^$', 'wai_index'),        # 外首页
+    (r'^download_file/$', 'download_file')
 )
