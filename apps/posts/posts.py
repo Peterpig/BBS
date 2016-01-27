@@ -48,10 +48,10 @@ def index(request, id):
                 _list.append({'option':option, 'v_count':v_count})
                 # 每个选项的百分比
                 option.present = int(float(v_count)/float(all_vote)) if all_vote else 0
+                context.option_list = sorted(_list, key=lambda x:-x['v_count'])
         posts.views = posts.views + 1
         posts.save()
         context.posts = posts
-        context.option_list = sorted(_list, key=lambda x:-x['v_count'])
         # context.option_list = option_list
     except Exception, e:
         log.error("%s:%s" % (inspect.stack()[0][3], e))

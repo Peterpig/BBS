@@ -106,7 +106,7 @@ def wai_index(request):
             op = Options.objects.seek(pk=obj)
             if op:
                 obj = op.posts
-                if obj.add_time >= datetime.date.today():
+                if obj.add_time >= datetime.datetime(today.year, today.month, today.day):
                     option_list = Options.objects.filter(posts=obj)
                     _list = []
                     for option in option_list:
